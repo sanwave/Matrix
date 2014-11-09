@@ -44,7 +44,7 @@ namespace Matrix
 
 		File(const char *filename)
 		{
-			//åˆ¤æ–­æ–‡ä»¶å­˜åœ¨
+			//ÅÐ¶ÏÎÄ¼þ´æÔÚ
 			if (NULL == filename)
 			{
 				m_filename = NULL;
@@ -158,6 +158,19 @@ namespace Matrix
 			return ReadAsBinary(m_filename, page);
 		}
 
+		int OverWrite(const char * text, size_t size = 0)
+		{
+			if (NULL == m_filename || NULL == text)
+			{
+				return -2;
+			}
+			if (0 >= size)
+			{
+				size = strlen(text);
+			}
+			return OverWrite(m_filename, text, size);
+		}
+
 		int WriteText(const char * text, size_t size = 0, bool over_write = false)
 		{
 			if (NULL == m_filename || NULL == text)
@@ -168,7 +181,7 @@ namespace Matrix
 			{
 				size = strlen(text);
 			}
-			return Write(m_filename, text, over_write);
+			return Write(m_filename, text, 0, size, over_write);
 		}
 
 		int AppendText(const char * text, size_t size = 0)
@@ -278,6 +291,32 @@ namespace Matrix
 			return buffer;
 		}
 
+		static int OverWrite(const wchar_t * filename, const char * text, size_t write_size = 0)
+		{
+			std::ofstream file;
+			if (NULL == filename || NULL == text)
+			{
+				return -2;
+			}
+			char * afilename = Matrix::TextEncoder(filename).Ansi();
+			
+			file.open(afilename, std::ios_base::out | std::ios_base::binary);
+			
+			if (0 >= write_size)
+			{
+				write_size = strlen(text);
+			}
+			file.write(text, write_size);
+			file.close();
+
+			if (NULL != afilename)
+			{
+				delete afilename;
+				afilename = NULL;
+			}
+			return 1;
+		}
+
 		static int Write(const wchar_t * filename, const char * text, off_t off = 0, size_t write_size = 0, bool over_write = false)
 		{
 			std::fstream file;
@@ -289,10 +328,10 @@ namespace Matrix
 			file.open(afilename, std::ios_base::in);
 			bool exist = file.is_open();
 			file.close();
-			if (exist && false == over_write)
+			if (exist && (false == over_write))
 			{
 				file.close();
-				return -2;
+				return 0;
 			}
 			else if (exist)
 			{
@@ -315,7 +354,7 @@ namespace Matrix
 				delete afilename;
 				afilename = NULL;
 			}
-			return 0;
+			return 1;
 		}
 
 		static int Append(const wchar_t * filename, const char * text, size_t app_size = 0)
