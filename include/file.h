@@ -43,26 +43,31 @@ namespace Matrix
 	public:
 
 		File(const char *filename)
+			:m_filename(NULL)
 		{
-			//ÅÐ¶ÏÎÄ¼þ´æÔÚ
-			if (NULL == filename)
-			{
-				m_filename = NULL;
-			}
-			else
+			//åˆ¤æ–­æ–‡ä»¶å­˜åœ¨
+			if (NULL != filename)			
 			{
 				m_filename = Matrix::TextEncoder(filename).Unicode();
 			}
-
 		}
 
 		File(const wchar_t *filename)
+			:m_filename(NULL)
 		{
-			if (NULL == filename)
+			if (NULL != filename)			
 			{
-				m_filename = NULL;
+				size_t ulen = wcslen(filename);
+				m_filename = new wchar_t[ulen + 1];
+				WSTRCOPYN(m_filename, filename, ulen + 1);
 			}
-			else
+		}
+
+		File(const File& src)
+			:m_filename(NULL)
+		{
+			const wchar_t * filename = src.FileName();
+			if (NULL != filename)
 			{
 				size_t ulen = wcslen(filename);
 				m_filename = new wchar_t[ulen + 1];
@@ -93,6 +98,11 @@ namespace Matrix
 				sample = NULL;
 			}
 			return encode;
+		}
+
+		const wchar_t* FileName() const
+		{
+			return m_filename;
 		}
 
 		const wchar_t * Text(int page = 0, size_t *size = NULL)
@@ -267,7 +277,7 @@ namespace Matrix
 			file.seekg(0, std::ios::end);
 			size_t size = static_cast<size_t>(file.tellg());
 
-			if (off >= size)
+			if (off - size >= 0)
 			{
 				file.close();
 				return NULL;

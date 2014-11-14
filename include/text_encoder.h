@@ -129,6 +129,18 @@ namespace Matrix
 			}
 		}
 
+		TextEncoder(const TextEncoder & src) :m_copy_flag(false), m_buffer(NULL)
+		{
+			m_copy_flag = src.CopyFlag();
+			wchar_t * buffer = src.Buffer();
+			if (NULL != buffer)
+			{
+				int ulen = wcslen(buffer);
+				m_buffer = new wchar_t[ulen + 1];
+				WSTRCOPYN(m_buffer, buffer, ulen + 1);
+			}
+		}
+
 		~TextEncoder()
 		{
 			if (false == m_copy_flag && NULL != m_buffer)
@@ -138,7 +150,7 @@ namespace Matrix
 			}
 		}
 
-		char* Ansi()
+		char* Ansi() const
 		{
 			if (NULL == m_buffer)
 			{
@@ -150,7 +162,7 @@ namespace Matrix
 			}
 		}
 
-		char* Utf8()
+		char* Utf8() const
 		{
 			if (NULL == m_buffer)
 			{
@@ -173,6 +185,16 @@ namespace Matrix
 				m_copy_flag = true;
 				return m_buffer;
 			}
+		}
+
+		bool CopyFlag() const
+		{
+			return m_copy_flag;
+		}
+
+		wchar_t * Buffer() const
+		{
+			return m_buffer;
 		}
 
 		/// <summary>
