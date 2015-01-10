@@ -20,6 +20,12 @@
     <ClInclude Include="include\mysql_helper.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\environment.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\log.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\file.cpp">
