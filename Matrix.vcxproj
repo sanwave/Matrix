@@ -93,8 +93,8 @@
     <ClInclude Include="include\log.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="environment.cpp" />
-    <ClCompile Include="log.cpp" />
+    <ClCompile Include="src\environment.cpp" />
+    <ClCompile Include="src\log.cpp" />
     <ClCompile Include="src\datetime.cpp" />
     <ClCompile Include="src\file.cpp" />
     <ClCompile Include="src\mysql_helper.cpp" />

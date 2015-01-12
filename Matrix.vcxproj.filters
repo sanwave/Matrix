@@ -43,10 +43,10 @@
     <ClCompile Include="src\datetime.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="log.cpp">
+    <ClCompile Include="src\environment.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="environment.cpp">
+    <ClCompile Include="src\log.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
