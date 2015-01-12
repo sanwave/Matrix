@@ -16,15 +16,23 @@
 #define _LOG_H_
 
 #include <iostream>
+#include <fstream>
+#include "datetime.h"
+
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#elif __linux__
+#endif
+
 
 namespace Matrix
 {
-
-	int error_log(const char * info)
+	class Log
 	{
-		std::cout << *info << std::endl;
-		return 1;
-	}
+	public:
+		static int Write(const char * level, const char * info);
+	};
 
 }
 

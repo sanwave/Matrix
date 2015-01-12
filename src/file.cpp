@@ -234,7 +234,7 @@ namespace Matrix
 	size_t File::GetSize(const char * filename)
 	{
 		std::fstream file;
-		size_t size;
+		size_t size = 0;
 		if (NULL == filename)
 		{
 			return 0;
@@ -430,7 +430,8 @@ namespace Matrix
 		file.open(afilename, std::ios_base::app | std::ios_base::binary);
 		if (!file.is_open())
 		{
-			return -2;
+			file.close();
+			file.open(filename, std::ios_base::out | std::ios_base::binary);
 		}
 		else if (0 >= app_size)
 		{

@@ -26,6 +26,9 @@
     <ClInclude Include="include\log.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\datetime.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\file.cpp">
@@ -35,6 +38,15 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\mysql_helper.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datetime.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="environment.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

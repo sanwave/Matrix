@@ -68,7 +68,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>.\include;.\reference\mysql_5.6.20_x86\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;UNICODE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -85,6 +85,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\datetime.h" />
     <ClInclude Include="include\environment.h" />
     <ClInclude Include="include\file.h" />
     <ClInclude Include="include\mysql_helper.h" />
@@ -92,6 +93,9 @@
     <ClInclude Include="include\log.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="environment.cpp" />
+    <ClCompile Include="log.cpp" />
+    <ClCompile Include="src\datetime.cpp" />
     <ClCompile Include="src\file.cpp" />
     <ClCompile Include="src\mysql_helper.cpp" />
     <ClCompile Include="src\text_encoder.cpp" />
