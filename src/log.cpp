@@ -41,7 +41,7 @@ namespace Matrix
 			file.close();
 			return 1;
 		}
-		//std::cout << *info << std::endl;
+		//std::cout << DateTime::Now().c_str() << "    " 			<< *level << "    " 			<< *info << "    " 			<< std::endl;
 		return -1;
 	}
 }

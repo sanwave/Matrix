@@ -70,6 +70,7 @@
       <AdditionalIncludeDirectories>.\include;.\reference\mysql_5.6.20_x86\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;UNICODE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>false</TreatWarningAsError>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
