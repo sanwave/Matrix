@@ -3,7 +3,7 @@
 *
 *
 *
-*	Log File		In Matrix
+*	Log Class Header File		In Matrix
 *
 *	Created by Bonbon	2015.01.10
 *

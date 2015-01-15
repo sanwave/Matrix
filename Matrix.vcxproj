@@ -86,6 +86,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\convert.h" />
     <ClInclude Include="include\datetime.h" />
     <ClInclude Include="include\environment.h" />
     <ClInclude Include="include\file.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="include\log.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\convert.cpp" />
     <ClCompile Include="src\environment.cpp" />
     <ClCompile Include="src\log.cpp" />
     <ClCompile Include="src\datetime.cpp" />
