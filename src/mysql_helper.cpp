@@ -25,7 +25,7 @@ namespace
 		: m_conn(NULL), m_host(host), m_user(user), m_pwd(pwd),
 		m_db_name(db_name), m_encode("gbk")
 	{
-		//初始化数据库
+		//initialize the mysql connection library
 		if (0 != mysql_library_init(0, NULL, NULL))
 		{
 			m_error_info = "mysql_library_init() failed";
@@ -54,21 +54,21 @@ namespace
 
 	int MySqlHelper::InitMySQL()
 	{
-		//初始化数据结构
+		//initialize the mysql data types
 		if (NULL == (m_conn = mysql_init(m_conn)))
 		{
 			m_error_info = "mysql_init() failed";
 			return -1;
 		}
 
-		//在连接数据库之前，设置编码
+		//set text encode before connect to mysql server
 		if (0 != mysql_options(m_conn, MYSQL_SET_CHARSET_NAME, m_encode.c_str()))
 		{
 			m_error_info = "mysql_options() failed";
 			return -1;
 		}
 
-		//连接数据库
+		//connect to mysql server
 		if (NULL == mysql_real_connect(m_conn, m_host.c_str(), m_user.c_str(), m_pwd.c_str(),
 			m_db_name.c_str(), 3306, NULL, 0))
 		{
@@ -96,13 +96,13 @@ namespace
 		MYSQL_RES *result = NULL;
 		if (0 == mysql_query(m_conn, sql.c_str()))
 		{
-			//一次性取得数据集
+			//get all the data queried
 			result = mysql_store_result(m_conn);
-			//取得并打印行数
+			//print line number
 			my_ulonglong rowcount = mysql_num_rows(result);
 			std::cout << "row count: " << rowcount << std::endl;
 
-			//取得并打印各字段的名称
+			//print table header name
 			unsigned int fieldcount = mysql_num_fields(result);
 			MYSQL_FIELD *field = NULL;
 			for (unsigned int i = 0; i < fieldcount; i++)
@@ -112,7 +112,7 @@ namespace
 			}
 			std::cout << std::endl;
 
-			//打印各行
+			//print all lines data
 			MYSQL_ROW row = NULL;
 			row = mysql_fetch_row(result);
 			while (NULL != row)

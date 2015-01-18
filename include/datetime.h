@@ -17,6 +17,9 @@
 
 #include <iostream>
 
+// 1601年1月1日から1970年1月1日までの通算100ナノ秒
+#define UNIXTIME_BASE	((_int64)0x019db1ded53e8000)
+
 namespace Matrix
 {
 	class DateTime
@@ -25,6 +28,8 @@ namespace Matrix
 
 		//get now date and time string
 		static std::string Now();
+
+		static long UnixTime();
 
 		//get second
 		static int Second();
