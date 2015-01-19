@@ -32,6 +32,9 @@
     <ClInclude Include="include\convert.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\host.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\file.cpp">
@@ -53,6 +56,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\convert.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\host.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
