@@ -91,9 +91,13 @@
     <ClInclude Include="include\datetime.h" />
     <ClInclude Include="include\environment.h" />
     <ClInclude Include="include\file.h" />
+    <ClInclude Include="include\md5.h" />
     <ClInclude Include="include\mysql_helper.h" />
+    <ClInclude Include="include\socket.h" />
+    <ClInclude Include="include\tcp_socket.h" />
     <ClInclude Include="include\text_encoder.h" />
     <ClInclude Include="include\log.h" />
+    <ClInclude Include="include\udp_socket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\host.cpp" />
@@ -102,8 +106,12 @@
     <ClCompile Include="src\log.cpp" />
     <ClCompile Include="src\datetime.cpp" />
     <ClCompile Include="src\file.cpp" />
+    <ClCompile Include="src\md5.cpp" />
     <ClCompile Include="src\mysql_helper.cpp" />
+    <ClCompile Include="src\socket.cpp" />
+    <ClCompile Include="src\tcp_socket.cpp" />
     <ClCompile Include="src\text_encoder.cpp" />
+    <ClCompile Include="src\udp_socket.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

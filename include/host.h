@@ -24,8 +24,8 @@ namespace Matrix
 	{
 	public:
 		std::string Name;
-		std::string Addr;
-		unsigned long Ip;
+		std::string User;
+		std::string Ip;
 		unsigned short Port;
 	};
 
