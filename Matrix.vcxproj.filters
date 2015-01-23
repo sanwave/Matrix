@@ -47,6 +47,9 @@
     <ClInclude Include="include\md5.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\string_handler.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\file.cpp">
@@ -83,6 +86,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\md5.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\string_handler.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
