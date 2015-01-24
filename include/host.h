@@ -19,6 +19,12 @@
 #include <string>
 #include <list>
 
+#ifdef WIN32
+#include <Ws2tcpip.h>
+#else
+#include <arpa/net.h>
+#endif
+
 namespace Matrix
 {
 	class Host
@@ -30,6 +36,8 @@ namespace Matrix
 		unsigned short Port;
 
         std::string NickName;
+
+        void SetIp(unsigned long ip);
 	};
 
     class Hosts
@@ -41,6 +49,7 @@ namespace Matrix
         int RemoveHost(Host * host);
         std::list<Host *> GetHostByName(std::string host_name);
         Host *GetHostByAddr(std::string host_addr);
+        Host *GetHostByAddr(unsigned long host_addr);
 
     private:
         std::list<Host *> m_hosts;

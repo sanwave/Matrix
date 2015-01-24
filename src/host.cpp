@@ -15,6 +15,15 @@
 
 namespace Matrix
 {
+    void Host::SetIp(unsigned long ip)
+    {
+        char addr[256];
+        in_addr s;
+        s.s_addr = ip;
+        inet_ntop(AF_INET, (void *)&s, addr, sizeof(addr));
+        Ip = addr;
+    }
+
     Hosts::Hosts()
     {
         m_hosts.clear();
@@ -75,5 +84,12 @@ namespace Matrix
             }
         }
         return NULL;
+    }
+
+    Host * Hosts::GetHostByAddr(unsigned long host_addr)
+    {
+        Host host;
+        host.SetIp(host_addr);
+        return GetHostByAddr(host.Ip);
     }
 }
