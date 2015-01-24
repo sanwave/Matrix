@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
 namespace Matrix
 {
@@ -27,7 +28,23 @@ namespace Matrix
 		std::string User;
 		std::string Ip;
 		unsigned short Port;
+
+        std::string NickName;
 	};
+
+    class Hosts
+    {
+    public:
+        Hosts();
+        ~Hosts();
+        int AddHost(Host * host);
+        int RemoveHost(Host * host);
+        std::list<Host *> GetHostByName(std::string host_name);
+        Host *GetHostByAddr(std::string host_addr);
+
+    private:
+        std::list<Host *> m_hosts;
+    };
 
 }
 
