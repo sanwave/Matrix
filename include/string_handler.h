@@ -25,6 +25,8 @@ namespace Matrix
     public:
         //StrHandle();
         static std::string Between(const char * source, const char * left, const char * right);
+        static std::string Trim(std::string source);
+        static std::string BetweenTrim(const char * source, const char * left, const char * right);
     };
 }
 

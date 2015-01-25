@@ -92,4 +92,28 @@ namespace Matrix
         host.SetIp(host_addr);
         return GetHostByAddr(host.Ip);
     }
+
+    Host Hosts::GetLocalHost()
+    {
+        wchar_t	wbuf[128] = { 0 };
+        unsigned long size = sizeof(wbuf);
+        if (!::GetComputerNameW(wbuf, &size))
+        {
+            //return NULL;
+        }
+        size = sizeof(wbuf);
+        char * host_name = TextEncoder::UnicodeToUtf8(wbuf);
+        if (!::GetUserNameW(wbuf, &size))
+        {
+            //return;
+        }
+        char * user_name = TextEncoder::UnicodeToUtf8(wbuf);
+        Host local;
+        local.Name = host_name;
+        local.User = user_name;
+        local.NickName = "Nick.Matrix";
+        delete host_name;
+        delete user_name;
+        return local;
+    }
 }

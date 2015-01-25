@@ -19,6 +19,8 @@
 #include <string>
 #include <list>
 
+#include "text_encoder.h"
+
 #ifdef WIN32
 #include <Ws2tcpip.h>
 #else
@@ -51,6 +53,7 @@ namespace Matrix
         Host *GetHostByAddr(std::string host_addr);
         Host *GetHostByAddr(unsigned long host_addr);
 
+        static Host GetLocalHost();
     private:
         std::list<Host *> m_hosts;
     };
