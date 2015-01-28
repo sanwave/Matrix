@@ -27,6 +27,7 @@ namespace Matrix
         static std::string Between(const char * source, const char * left, const char * right);
         static std::string Trim(std::string source);
         static std::string BetweenTrim(const char * source, const char * left, const char * right);
+        static char * nCopy(char * dest, const char * source, size_t size);
     };
 }
 

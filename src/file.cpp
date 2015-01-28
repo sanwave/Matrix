@@ -362,7 +362,7 @@ namespace Matrix
 		}
 		char * afilename = Matrix::TextEncoder(filename).Ansi();
 
-		file.open(afilename, std::ios_base::out | std::ios_base::binary);
+        file.open(afilename, std::ios_base::out | std::ios_base::binary);
 
 		if (0 >= write_size)
 		{
