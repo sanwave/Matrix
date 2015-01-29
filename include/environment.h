@@ -15,13 +15,19 @@
 #ifndef _ENVIRONMENT_H_
 #define _ENVIRONMENT_H_
 
-#include "log.h"
+#ifdef __linux__
+#include <unistd.h>
+#endif
+
 #include "text_encoder.h"
+#include "file.h"
+#include "log.h"
 
 #define ANY_SIZE 1
 
 namespace Matrix
 {
+#ifdef WIN32
 	struct AddrInfo {
 		ULONG	addr;
 		ULONG	mask;
@@ -66,11 +72,17 @@ namespace Matrix
 		MIB_IPADDRROW table[ANY_SIZE];
 	} MIB_IPADDRTABLE, *PMIB_IPADDRTABLE;
 
+#else
+#endif
+
 	class Environment
 	{
 	public:
-		static char * GetCurrentDir();
+		static const char * GetCurrentDir();
+#ifdef WIN32
 		static AddrInfo * GetIPAddrs(BOOL strict, int *num);
+#else
+#endif
 	};
 
 }

@@ -31,13 +31,17 @@ namespace Matrix
 		return std::string(str_time);
 	}
 
-	long DateTime::UnixTime()
+	time_t DateTime::UnixTime()
 	{
+#ifdef WIN32
 		SYSTEMTIME	st;
 		_int64		ft;
 		::GetSystemTime(&st);
 		::SystemTimeToFileTime(&st, (FILETIME *)&ft);
 		return	(long)((ft - UNIXTIME_BASE) / 10000000);
+#else
+        return time(NULL);
+#endif
 	}
 
 	int DateTime::Second()

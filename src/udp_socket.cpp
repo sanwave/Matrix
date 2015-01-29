@@ -20,7 +20,8 @@ namespace Matrix
 	{
 		Create(AF_INET, SOCK_DGRAM, 0);
 		bool opt = true;
-		SetOption(SOL_SOCKET, SO_BROADCAST, reinterpret_cast<char FAR *>(&opt), sizeof(opt));
+        //reinterpret_cast<char FAR *>  ==>>  const char * ???
+		SetOption(SOL_SOCKET, SO_BROADCAST, (const char *)(&opt), sizeof(opt));
 	}
 
 	UdpSocket::~UdpSocket()

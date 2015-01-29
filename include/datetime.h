@@ -29,7 +29,7 @@ namespace Matrix
 		//get now date and time string
 		static std::string Now();
 
-		static long UnixTime();
+		static time_t UnixTime();
 
 		//get second
 		static int Second();

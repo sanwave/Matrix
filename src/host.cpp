@@ -95,6 +95,7 @@ namespace Matrix
 
     Host Hosts::GetLocalHost()
     {
+#ifdef WIN32
         wchar_t	wbuf[128] = { 0 };
         unsigned long size = sizeof(wbuf);
         if (!::GetComputerNameW(wbuf, &size))
@@ -115,5 +116,9 @@ namespace Matrix
         delete host_name;
         delete user_name;
         return local;
+#else
+        Host local;
+        return local;
+#endif
     }
 }

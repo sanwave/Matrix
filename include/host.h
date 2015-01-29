@@ -24,7 +24,7 @@
 #ifdef WIN32
 #include <Ws2tcpip.h>
 #else
-#include <arpa/net.h>
+#include <arpa/inet.h>
 #endif
 
 namespace Matrix

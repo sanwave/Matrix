@@ -17,14 +17,20 @@
 
 #include <iostream>
 #include <fstream>
-#include "datetime.h"
+
+//for gcc
+#include <cstring>
 
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#elif __linux__
+#else
+#include <unistd.h>
+#include <climits>
 #endif
 
+#include "datetime.h"
+#include "string_handler.h"
 
 namespace Matrix
 {

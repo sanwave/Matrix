@@ -16,22 +16,29 @@
 
 namespace Matrix
 {
-	char * Environment::GetCurrentDir()
-	{
-		wchar_t dir[MAX_PATH];
-		if (::GetModuleFileName(NULL, dir, MAX_PATH))
-		{
-			wchar_t * separator = wcsrchr(dir, L'\\');
-			*++separator = L'\0';
-			return Matrix::TextEncoder(dir).Utf8();
-		}
+	const char * Environment::GetCurrentDir()
+	{		
+        int ret = 0;
+#ifdef WIN32
+        char current_dir[MAX_PATH];
+        ret = ::GetModuleFileNameA(NULL, current_dir, MAX_PATH);
+#else
+        char current_dir[PATH_MAX];
+        ret = readlink("/proc/self/exe", current_dir, PATH_MAX);
+#endif
+        if (ret > 0 && ret <= sizeof(current_dir))
+        {
+            char * separator = strrchr(current_dir, '\\');
+            *++separator = 0;
+            return separator;
+        }
 		else
 		{
 			Log::Write("ERROR", "get current dir failed!");
 			return NULL;
 		}
 	}
-
+#ifdef WIN32
 	AddrInfo * Environment::GetIPAddrs(BOOL strict, int *num)
 	{
 		static DWORD(WINAPI *pGetIpAddrTable)(PMIB_IPADDRTABLE, ULONG *, BOOL) = NULL;
@@ -77,6 +84,8 @@ namespace Matrix
 
 		return	ret;
 	}
+#else
+#endif
 }
 
 

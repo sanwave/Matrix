@@ -41,9 +41,10 @@ namespace Matrix
 
 	int Socket::Init()
 	{
+        int ret = 0;
 #ifdef WIN32
 		WSADATA wd;
-		int ret = WSAStartup(MAKEWORD(2, 0), &wd);
+		ret = WSAStartup(MAKEWORD(2, 0), &wd);
 		if (ret < 0)
 		{
 			Log::Write("ERROR", "winsock startup failed\n");
@@ -117,7 +118,7 @@ namespace Matrix
 		return n;
 	}
 
-	SOCKET Socket::Accept(struct sockaddr * addr, int * len)
+	SOCKET Socket::Accept(struct sockaddr * addr, socklen_t * len)
 	{
 		SOCKET connfd;
 		if ((connfd = accept(m_sockfd, addr, len)) == INVALID_SOCKET)
@@ -160,7 +161,7 @@ namespace Matrix
 		return (n);
 	}
 
-	int Socket::RecvFrom(char * buff, int len, int flags, struct sockaddr *from, int * fromlen)
+	int Socket::RecvFrom(char * buff, int len, int flags, struct sockaddr *from, socklen_t * fromlen)
 	{
 		int n;
 		n = recvfrom(m_sockfd, buff, len, flags, from, fromlen);

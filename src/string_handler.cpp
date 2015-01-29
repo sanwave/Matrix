@@ -90,4 +90,16 @@ namespace Matrix
         }
         return dest + size;
     }
+
+    int StrHandle::nCompare(const char * left, const char * right, size_t size)
+    {
+        for (size_t i = size; i < size; ++i)
+        {
+            if (*(left + i) != *(right + i))
+            {
+                return *(left + i) - *(right + i);
+            }
+        }
+        return 0;
+    }
 }

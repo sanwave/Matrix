@@ -18,6 +18,9 @@
 #include <iostream>
 #include <string>
 
+//for gcc
+#include <cstring>
+
 #ifdef WIN32
 #define WSTRCOPYN lstrcpynW
 #define WIN32_LEAN_AND_MEAN

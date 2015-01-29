@@ -431,7 +431,7 @@ namespace Matrix
 		if (!file.is_open())
 		{
 			file.close();
-			file.open(filename, std::ios_base::out | std::ios_base::binary);
+			file.open(afilename, std::ios_base::out | std::ios_base::binary);
 		}
 		else if (0 >= app_size)
 		{

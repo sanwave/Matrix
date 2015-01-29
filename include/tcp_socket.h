@@ -42,7 +42,7 @@ namespace Matrix
 
 		~TcpSocket();
 
-		TcpConnection Accept(struct sockaddr * addr, int * len);
+		TcpConnection Accept(struct sockaddr * addr, socklen_t * len);
 
 	};
 }

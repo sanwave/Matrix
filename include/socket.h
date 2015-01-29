@@ -19,10 +19,15 @@
 #include <winsock2.h>
 #pragma comment(lib,"Ws2_32");
 #else
-#include <arpa/net.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <arpa/inet.h>
 #define SOCKET int
 #define INVALID_SOCKET -1
 #endif
+
+//for gcc
+#include <cstring>
 
 #include "log.h"
 
@@ -55,7 +60,7 @@ namespace Matrix
 
 		int Listen(int backlog);
 
-		SOCKET Accept(struct sockaddr * addr, int * len);
+		SOCKET Accept(struct sockaddr * addr, socklen_t * len);
 
 		int Connect(const struct sockaddr * addr, int len);
 
@@ -65,7 +70,7 @@ namespace Matrix
 
 		int SendTo(const char * buff, int len, int flags, const sockaddr *to, int tolen);
 
-		int RecvFrom(char * buff, int len, int flags, struct sockaddr *from, int *fromlen);
+		int RecvFrom(char * buff, int len, int flags, struct sockaddr *from, socklen_t * fromlen);
 
 		int Close();
 

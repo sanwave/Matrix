@@ -25,12 +25,24 @@ namespace Matrix
 
 	std::string Convert::Int2Str(int value)
 	{
+#ifdef WIN32
 		return std::to_string(value).c_str();
+#else
+        return ToStr(value);
+#endif
 	}
 
 	int Convert::Str2Int(std::string value)
 	{
+#ifdef WIN32
 		return std::stoi(value);
+#else
+        std::stringstream s;
+        int result = 0;
+        s << value;
+        s >> result;
+        return result;
+#endif
 	}
 
 }
