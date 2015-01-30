@@ -50,6 +50,9 @@
     <ClInclude Include="include\string_handler.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\os.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\file.cpp">
@@ -89,6 +92,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\string_handler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\os.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -93,6 +93,7 @@
     <ClInclude Include="include\file.h" />
     <ClInclude Include="include\md5.h" />
     <ClInclude Include="include\mysql_helper.h" />
+    <ClInclude Include="include\os.h" />
     <ClInclude Include="include\socket.h" />
     <ClInclude Include="include\string_handler.h" />
     <ClInclude Include="include\tcp_socket.h" />
@@ -109,6 +110,7 @@
     <ClCompile Include="src\file.cpp" />
     <ClCompile Include="src\md5.cpp" />
     <ClCompile Include="src\mysql_helper.cpp" />
+    <ClCompile Include="src\os.cpp" />
     <ClCompile Include="src\socket.cpp" />
     <ClCompile Include="src\string_handler.cpp" />
     <ClCompile Include="src\tcp_socket.cpp" />

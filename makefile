@@ -2,9 +2,9 @@
 ##############        Matrix makefile     ###############
 
 all: matrix
-matrix: convert.o datetime.o environment.o file.o host.o log.o md5.o mysql_helper.o socket.o string_handler.o tcp_socket.o text_encoder.o udp_socket.o
-	ar -r matrix.a ./convert.o ./datetime.o ./environment.o ./file.o ./host.o ./log.o ./md5.o ./mysql_helper.o ./socket.o ./string_handler.o ./tcp_socket.o ./text_encoder.o ./udp_socket.o
-	rm -f ./convert.o ./datetime.o ./environment.o ./file.o ./host.o ./log.o ./md5.o ./mysql_helper.o ./socket.o ./string_handler.o ./tcp_socket.o ./text_encoder.o ./udp_socket.o
+matrix: convert.o datetime.o environment.o file.o host.o log.o md5.o mysql_helper.o os.o socket.o string_handler.o tcp_socket.o text_encoder.o udp_socket.o
+	ar -r matrix.a ./convert.o ./datetime.o ./environment.o ./file.o ./host.o ./log.o ./md5.o ./mysql_helper.o ./os.o ./socket.o ./string_handler.o ./tcp_socket.o ./text_encoder.o ./udp_socket.o
+	rm -f ./convert.o ./datetime.o ./environment.o ./file.o ./host.o ./log.o ./md5.o ./mysql_helper.o ./os.o ./socket.o ./string_handler.o ./tcp_socket.o ./text_encoder.o ./udp_socket.o
 convert.o: ./include/convert.h
 	g++ -c ./src/convert.cpp -I ./include
 datetime.o: ./include/datetime.h
@@ -21,6 +21,8 @@ md5.o: ./include/md5.h
 	g++ -c ./src/md5.cpp -I ./include
 mysql_helper.o: ./include/mysql_helper.h
 	g++ -c ./src/mysql_helper.cpp -I ./include -I /usr/include/mysql/ -l libmysqlclient
+os.o: ./include/os.h
+	g++ -c ./src/os.cpp -I ./include
 socket.o: ./include/socket.h
 	g++ -c ./src/socket.cpp -I ./include
 string_handler.o: ./include/string_handler.h
@@ -33,7 +35,7 @@ udp_socket.o: ./include/udp_socket.h
 	g++ -c ./src/udp_socket.cpp -I ./include
 
 clean: 
-	rm -f ./convert.o ./datetime.o ./environment.o ./file.o ./host.o ./log.o ./md5.o ./mysql_helper.o ./socket.o ./string_handler.o ./tcp_socket.o ./text_encoder.o ./udp_socket.o ./matrix.a
+	rm -f ./convert.o ./datetime.o ./environment.o ./file.o ./host.o ./log.o ./md5.o ./mysql_helper.o ./os.o ./socket.o ./string_handler.o ./tcp_socket.o ./text_encoder.o ./udp_socket.o ./matrix.a
 
 
 
