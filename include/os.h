@@ -11,8 +11,11 @@
 *
 */
 
+#ifndef _OS_H_
+#define _OS_H_
+
 #ifdef WIN32
-#include <Windows.h>
+#include "socket.h" //#include <Windows.h> is confict with socket.h
 #else
 #include <cstdlib>
 #include <unistd.h>
@@ -27,3 +30,5 @@ namespace Matrix
     };
 
 }
+
+#endif

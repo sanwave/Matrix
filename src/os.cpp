@@ -22,7 +22,7 @@ namespace Matrix
 #else
         struct timeval val;
         val.tv_sec = milliseconds / 1000;
-        val.tv_usec = (milliseconds * 1000) % 1 000 000;
+        val.tv_usec = (milliseconds * 1000) % 1000000;
         select(0, NULL, NULL, NULL, &val);
 #endif
     }
