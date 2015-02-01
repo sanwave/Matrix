@@ -5,9 +5,9 @@
 *
 *	OS Class Source File		In Matrix
 *
-*	Created by Bonbon	2015.01.15
+*	Created by Bonbon	2015.01.30
 *
-*	Updated by Bonbon	2015.01.15
+*	Updated by Bonbon	2015.01.31
 *
 */
 
@@ -27,6 +27,7 @@ namespace Matrix
     {
     public:
         static void Sleep(unsigned int milliseconds);
+        static void CleanPtr(void ** ptr);
     };
 
 }

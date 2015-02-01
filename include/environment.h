@@ -78,7 +78,7 @@ namespace Matrix
 	class Environment
 	{
 	public:
-		static const char * GetCurrentDir();
+		static std::string GetCurrentDir();
 #ifdef WIN32
 		static AddrInfo * GetIPAddrs(BOOL strict, int *num);
 #else

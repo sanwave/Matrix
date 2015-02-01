@@ -26,13 +26,14 @@ namespace Matrix
             left_pos = strstr(source, left);
         }
 
-        if (NULL != left_pos)
-        {
-            right_pos = strstr(left_pos + 1, right);
-        }
-        else
+        if (NULL == left_pos)
         {
             return "";
+        }
+
+        if (NULL != right)
+        {
+            right_pos = strstr(left_pos + 1, right);
         }
 
         if (NULL == right_pos)

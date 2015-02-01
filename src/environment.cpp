@@ -16,7 +16,7 @@
 
 namespace Matrix
 {
-	const char * Environment::GetCurrentDir()
+	std::string Environment::GetCurrentDir()
 	{		
         int ret = 0;
 #ifdef WIN32
@@ -28,9 +28,13 @@ namespace Matrix
 #endif
         if (ret > 0 && ret <= sizeof(current_dir))
         {
+#ifdef WIN32
             char * separator = strrchr(current_dir, '\\');
+#else
+            char * separator = strrchr(current_dir, '/');
+#endif
             *++separator = 0;
-            return separator;
+            return std::string(current_dir);
         }
 		else
 		{

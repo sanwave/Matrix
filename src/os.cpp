@@ -5,9 +5,9 @@
 *
 *	OS Class Header File		In Matrix
 *
-*	Created by Bonbon	2015.01.15
+*	Created by Bonbon	2015.01.30
 *
-*	Updated by Bonbon	2015.01.15
+*	Updated by Bonbon	2015.01.30
 *
 */
 
@@ -25,6 +25,15 @@ namespace Matrix
         val.tv_usec = (milliseconds * 1000) % 1000000;
         select(0, NULL, NULL, NULL, &val);
 #endif
+    }
+
+    void OS::CleanPtr(void ** ptr)
+    {
+        if (NULL != *ptr)
+        {
+            delete *ptr;
+            *ptr = NULL;
+        }
     }
 
 }

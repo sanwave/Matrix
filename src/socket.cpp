@@ -66,6 +66,7 @@ namespace Matrix
 
 	int Socket::SetBlock()
 	{
+        return 0;
 	}
 
 	int Socket::SetNonBlock()
