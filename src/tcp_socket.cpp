@@ -36,10 +36,10 @@ namespace Matrix
 
 	}
 
-	TcpConnection TcpSocket::Accept(struct sockaddr * addr, socklen_t * len)
+	TcpConnection * TcpSocket::Accept(struct sockaddr * addr, socklen_t * len)
 	{
 		SOCKET connfd = Socket::Accept(addr, len);
-		TcpConnection conn(connfd);
+        TcpConnection *conn = new TcpConnection(connfd);
 		return conn;
 	}
 
