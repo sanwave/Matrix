@@ -17,7 +17,7 @@ namespace Matrix
 {
     int Log::Write(std::string level, std::string info)
     {
-        Write(level.c_str(), info.c_str());
+        return Write(level.c_str(), info.c_str());
     }
 
     int Log::Write(const char * level, const char * info)

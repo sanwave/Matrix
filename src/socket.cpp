@@ -61,7 +61,7 @@ namespace Matrix
 			Close();
 			return -1;
 		}
-        Log::Write("TRACE", "Socket::Create a new socket");
+        Log::Write("TRACE", "Socket::Create a new socket: " + std::to_string(m_sockfd));
 		return 0;
 	}
 
@@ -101,13 +101,12 @@ namespace Matrix
 		addr.sin_port = htons(port);
         if (INADDR_ANY == (unsigned long)ip || INADDR_LOOPBACK==(unsigned long)ip || INADDR_BROADCAST==(unsigned long)ip)
         {
-            addr.sin_addr.s_addr = INADDR_ANY;
+            addr.sin_addr.s_addr = (unsigned long)ip;
         }
         else
         {
             inet_pton(AF_INET, ip, &addr.sin_addr);
-        }
-        std::cout << DateTime::Now().c_str() << " TRACE Bind IP: " << addr.sin_addr.s_addr << ", Bind Port: " << port << std::endl;
+        }        
 		if ((n = bind(m_sockfd, (struct sockaddr*)&addr, sizeof(addr))) < 0)
 		{
 			Log::Write("ERROR", "bind socket error");
