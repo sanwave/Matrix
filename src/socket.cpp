@@ -54,13 +54,14 @@ namespace Matrix
 	}
 
 	int Socket::Create(int family, int type, int protocol)
-	{
+	{        
 		if ((m_sockfd = socket(family, type, protocol)) == INVALID_SOCKET)
 		{
 			Log::Write("ERROR", "create socket error");
 			Close();
 			return -1;
 		}
+        Log::Write("TRACE", "Socket::Create a new socket");
 		return 0;
 	}
 
@@ -93,40 +94,58 @@ namespace Matrix
 
 	int Socket::Bind(const char * ip, unsigned short port)
 	{
+        Log::Write("TRACE", "Enter Socket::Bind");
+        //std::cout << DateTime::Now().c_str() << " TRACE Test" << std::endl;
 		int n;
 		struct sockaddr_in addr;
+        //std::cout << DateTime::Now().c_str() << " TRACE Before memset" << std::endl;
 		memset(&addr, 0, sizeof(addr));
 		addr.sin_family = AF_INET;
+        //std::cout << DateTime::Now().c_str() << " TRACE Before convert port" << std::endl;;
 		addr.sin_port = htons(port);
-		inet_pton(AF_INET, ip, &addr.sin_addr);
-
+        //std::cout << DateTime::Now().c_str() << " TRACE Before convert addr" << std::endl;;
+        if (INADDR_ANY == (unsigned long)ip || INADDR_LOOPBACK==(unsigned long)ip || INADDR_BROADCAST==(unsigned long)ip)
+        {
+            addr.sin_addr.s_addr = INADDR_ANY;
+        }
+        else
+        {
+            inet_pton(AF_INET, ip, &addr.sin_addr);
+        }
+        Log::Write("TRACE", "Before Socket::Bind");
+        std::cout << DateTime::Now().c_str() << " TRACE Bind IP: " << addr.sin_addr.s_addr << ", Bind Port: " << port << std::endl;
 		if ((n = bind(m_sockfd, (struct sockaddr*)&addr, sizeof(addr))) < 0)
 		{
 			Log::Write("ERROR", "bind socket error");
 			Close();
 		}
+        Log::Write("TRACE", "Exit Socket::Bind");
 		return n;
 	}
 
 	int Socket::Listen(int backlog)
 	{
+        Log::Write("TRACE", "Enter Socket::Listen");
 		int n;
 		if ((n = listen(m_sockfd, backlog)) == -1)
 		{
 			Log::Write("ERROR", "listen socket error");
 			Close();
 		}
+        Log::Write("TRACE", "Exit Socket::Listen");
 		return n;
 	}
 
 	SOCKET Socket::Accept(struct sockaddr * addr, socklen_t * len)
 	{
+        Log::Write("TRACE", "Enter Socket::Accept");
 		SOCKET connfd;
 		if ((connfd = accept(m_sockfd, addr, len)) == INVALID_SOCKET)
 		{
 			Log::Write("ERROR", "accept socket error");
 			Close();
 		}
+        Log::Write("TRACE", "Exit Socket::Accept");
 		return connfd;
 	}
 

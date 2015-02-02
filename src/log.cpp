@@ -17,6 +17,7 @@ namespace Matrix
 {
     int Log::Write(const char * level, const char * info)
     {
+        std::cout << DateTime::Now() << "    " << level << "    " << info << std::endl;
         int ret = 0;
 #ifdef WIN32
         char filename[MAX_PATH];
@@ -27,7 +28,11 @@ namespace Matrix
 #endif
         if (ret > 0 && ret <= sizeof(filename))
         {
+#ifdef WIN32
             char * separator = strrchr(filename, '\\');
+#else
+            char * separator = strrchr(filename, '/');
+#endif
             StrHandle::nCopy(++separator, "sys.log", 7);
 
             std::fstream file;
