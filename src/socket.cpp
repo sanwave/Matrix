@@ -54,7 +54,7 @@ namespace Matrix
 	}
 
 	int Socket::Create(int family, int type, int protocol)
-	{        
+	{
 		if ((m_sockfd = socket(family, type, protocol)) == INVALID_SOCKET)
 		{
 			Log::Write("ERROR", "create socket error");
@@ -95,15 +95,11 @@ namespace Matrix
 	int Socket::Bind(const char * ip, unsigned short port)
 	{
         Log::Write("TRACE", "Enter Socket::Bind");
-        //std::cout << DateTime::Now().c_str() << " TRACE Test" << std::endl;
 		int n;
 		struct sockaddr_in addr;
-        //std::cout << DateTime::Now().c_str() << " TRACE Before memset" << std::endl;
 		memset(&addr, 0, sizeof(addr));
 		addr.sin_family = AF_INET;
-        //std::cout << DateTime::Now().c_str() << " TRACE Before convert port" << std::endl;;
 		addr.sin_port = htons(port);
-        //std::cout << DateTime::Now().c_str() << " TRACE Before convert addr" << std::endl;;
         if (INADDR_ANY == (unsigned long)ip || INADDR_LOOPBACK==(unsigned long)ip || INADDR_BROADCAST==(unsigned long)ip)
         {
             addr.sin_addr.s_addr = INADDR_ANY;

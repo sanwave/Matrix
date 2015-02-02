@@ -103,4 +103,32 @@ namespace Matrix
         }
         return 0;
     }
+
+    std::string StrHandle::Format(const char * format, const char * args...)
+    {
+        std::stringstream stream;
+        while (*format)
+        {
+            if ('{' != *format)
+            {
+                stream << *format;
+            }            
+            else if('{' == *(format + 1))
+            {
+                stream << '{';
+                format += 2;
+            }
+            else if ('{' != *(format + 1) && NULL != strchr(format, '}'))
+            {
+                std::string index = BetweenTrim(format, "{", "}");
+                stream << args[stoi(index)];
+                format = strchr(format, '}') + 1;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        return stream.str();
+    }
 }

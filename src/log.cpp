@@ -15,6 +15,11 @@
 
 namespace Matrix
 {
+    int Log::Write(std::string level, std::string info)
+    {
+        Write(level.c_str(), info.c_str());
+    }
+
     int Log::Write(const char * level, const char * info)
     {
         std::cout << DateTime::Now() << "    " << level << "    " << info << std::endl;
@@ -24,14 +29,21 @@ namespace Matrix
         ret = ::GetModuleFileNameA(NULL, filename, MAX_PATH);
 #else
         char filename[PATH_MAX];
-        ret = readlink("/proc/self/exe", filename, PATH_MAX);
+        //ret = readlink("/proc/self/exe", filename, PATH_MAX);
+        char cmd[30] = { 0 };
+        snprintf(cmd, sizeof(cmd), "/proc/%d/exe", getpid());
+        ret = readlink(cmd, filename, PATH_MAX);
 #endif
         if (ret > 0 && ret <= sizeof(filename))
         {
 #ifdef WIN32
             char * separator = strrchr(filename, '\\');
 #else
-            char * separator = strrchr(filename, '/');
+            char * separator = filename + strlen(filename) - 1;
+            if ('/' != *separator)
+            {
+                *(++separator) = '/';
+            }
 #endif
             StrHandle::nCopy(++separator, "sys.log", 7);
 

@@ -37,6 +37,7 @@ namespace Matrix
 	class Log
 	{
 	public:
+        static int Write(std::string level, std::string info);
 		static int Write(const char * level, const char * info);
 	};
 
