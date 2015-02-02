@@ -77,8 +77,6 @@ namespace Matrix
 
     std::string StrHandle::BetweenTrim(const char * source, const char * left, const char * right)
     {
-        //std::string s = Between(source, left, right);
-        //std::cout << "        source= "<<source<<" between "<<left<<" and "<<right<<", s=" << s << std::endl;
         return Trim(Between(source, left, right));
     }
 

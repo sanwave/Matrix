@@ -18,7 +18,6 @@ namespace Matrix
 	File::File(const char *filename)
 		:m_filename(NULL)
 	{
-		//判断文件存在
 		if (NULL != filename)
 		{
 			m_filename = Matrix::TextEncoder(filename).Unicode();

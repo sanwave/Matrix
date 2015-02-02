@@ -24,7 +24,10 @@ namespace Matrix
         ret = ::GetModuleFileNameA(NULL, current_dir, MAX_PATH);
 #else
         char current_dir[PATH_MAX];
-        ret = readlink("/proc/self/exe", current_dir, PATH_MAX);
+        //ret = readlink("/proc/self/exe", filename, PATH_MAX);
+        char cmd[30] = { 0 };
+        snprintf(cmd, sizeof(cmd), "/proc/%d/exe", getpid());
+        ret = readlink(cmd, filename, PATH_MAX);
 #endif
         if (ret > 0 && ret <= sizeof(current_dir))
         {

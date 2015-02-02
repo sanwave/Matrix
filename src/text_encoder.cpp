@@ -314,7 +314,7 @@ namespace Matrix
 			ch = text[index];
 			if ((ch & 0x80) == 0)
 			{
-				continue;//Ansi×Ö·û
+				continue;//Ansi Char
 			}
 			else if ((ch & 0xC0) == 0xC0)
 			{
@@ -353,7 +353,7 @@ namespace Matrix
 				return Matrix::ANSI;
 			}
 		}
-		//Ä¬ÈÏUTF8
+		//Default UTF8
 		return Matrix::DEFAULT_ENCODE;
 	}
 

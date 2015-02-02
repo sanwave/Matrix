@@ -24,7 +24,7 @@ mysql_helper.o: ./include/mysql_helper.h
 os.o: ./include/os.h
 	g++ -c ./src/os.cpp -I ./include
 socket.o: ./include/socket.h
-	g++ -c ./src/socket.cpp -I ./include
+	g++ -c ./src/socket.cpp -I ./include -std=c++0x
 string_handler.o: ./include/string_handler.h
 	g++ -c ./src/string_handler.cpp -I ./include
 tcp_socket.o: ./include/tcp_socket.h

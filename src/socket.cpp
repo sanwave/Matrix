@@ -94,7 +94,6 @@ namespace Matrix
 
 	int Socket::Bind(const char * ip, unsigned short port)
 	{
-        Log::Write("TRACE", "Enter Socket::Bind");
 		int n;
 		struct sockaddr_in addr;
 		memset(&addr, 0, sizeof(addr));
@@ -108,40 +107,37 @@ namespace Matrix
         {
             inet_pton(AF_INET, ip, &addr.sin_addr);
         }
-        Log::Write("TRACE", "Before Socket::Bind");
         std::cout << DateTime::Now().c_str() << " TRACE Bind IP: " << addr.sin_addr.s_addr << ", Bind Port: " << port << std::endl;
 		if ((n = bind(m_sockfd, (struct sockaddr*)&addr, sizeof(addr))) < 0)
 		{
 			Log::Write("ERROR", "bind socket error");
 			Close();
 		}
-        Log::Write("TRACE", "Exit Socket::Bind");
+        Log::Write("TRACE", "Socket::Bind Port:" + std::to_string(port));
 		return n;
 	}
 
 	int Socket::Listen(int backlog)
 	{
-        Log::Write("TRACE", "Enter Socket::Listen");
 		int n;
 		if ((n = listen(m_sockfd, backlog)) == -1)
 		{
 			Log::Write("ERROR", "listen socket error");
 			Close();
 		}
-        Log::Write("TRACE", "Exit Socket::Listen");
+        Log::Write("TRACE", "Socket::Listen Start.");
 		return n;
 	}
 
 	SOCKET Socket::Accept(struct sockaddr * addr, socklen_t * len)
 	{
-        Log::Write("TRACE", "Enter Socket::Accept");
 		SOCKET connfd;
 		if ((connfd = accept(m_sockfd, addr, len)) == INVALID_SOCKET)
 		{
 			Log::Write("ERROR", "accept socket error");
 			Close();
 		}
-        Log::Write("TRACE", "Exit Socket::Accept");
+        Log::Write("TRACE", "Socket::Accept");
 		return connfd;
 	}
 
