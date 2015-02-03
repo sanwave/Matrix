@@ -26,7 +26,7 @@ os.o: ./include/os.h
 socket.o: ./include/socket.h
 	g++ -c ./src/socket.cpp -I ./include -std=c++0x
 string_handler.o: ./include/string_handler.h
-	g++ -c ./src/string_handler.cpp -I ./include
+	g++ -c ./src/string_handler.cpp -I ./include -std=c++0x
 tcp_socket.o: ./include/tcp_socket.h
 	g++ -c ./src/tcp_socket.cpp -I ./include
 text_encoder.o: ./include/text_encoder.h
