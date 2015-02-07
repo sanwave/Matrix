@@ -16,8 +16,7 @@
 #define _CONVERT_H_
 
 #include <iostream>
-#include <string>
-#include <sstream>
+
 
 namespace Matrix
 {

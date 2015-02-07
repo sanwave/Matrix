@@ -13,6 +13,15 @@
 
 #include "host.h"
 
+#include "convert.h"
+#include "text_encoder.h"
+
+#ifdef WIN32
+#include <Ws2tcpip.h>
+#else
+#include <arpa/inet.h>
+#endif
+
 namespace Matrix
 {
     void Host::SetIp(unsigned long ip)
@@ -22,6 +31,11 @@ namespace Matrix
         s.s_addr = ip;
         inet_ntop(AF_INET, (void *)&s, addr, sizeof(addr));
         Ip = addr;
+    }
+
+    std::string Host::Addr() const
+    {
+        return Ip + ":" + Convert::Int2Str(Port);
     }
 
     Hosts::Hosts()

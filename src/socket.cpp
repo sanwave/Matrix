@@ -13,6 +13,10 @@
 
 #include "socket.h"
 
+#include <string>
+#include "log.h"
+#include "convert.h"
+
 namespace Matrix
 {
 	Socket::Socket()
@@ -47,7 +51,7 @@ namespace Matrix
 		ret = WSAStartup(MAKEWORD(2, 0), &wd);
 		if (ret < 0)
 		{
-			Log::Write("ERROR", "winsock startup failed\n");
+			Log::Write(LOG_ERROR, "Winsock startup failed\n");
 		}
 #endif
 		return ret;
@@ -57,11 +61,11 @@ namespace Matrix
 	{
 		if ((m_sockfd = socket(family, type, protocol)) == INVALID_SOCKET)
 		{
-			Log::Write("ERROR", "create socket error");
+			Log::Write(LOG_ERROR, "Create socket error");
 			Close();
 			return -1;
 		}
-        Log::Write("TRACE", "Socket::Create a new socket: " + std::to_string(m_sockfd));
+        Log::Write(LOG_TRACE, "Socket::Create a new socket: " + Convert::Int2Str(m_sockfd));
 		return 0;
 	}
 
@@ -79,7 +83,7 @@ namespace Matrix
 #else
 		if (fcntl(m_sockfd, F_SETFL, O_NONBLOCK))
 		{
-			Log::Write("ERROR", "fcntl");
+			Log::Write(LOG_ERROR, "Fcntl error");
 			return -1;
 		}
 #endif
@@ -109,10 +113,10 @@ namespace Matrix
         }        
 		if ((n = bind(m_sockfd, (struct sockaddr*)&addr, sizeof(addr))) < 0)
 		{
-			Log::Write("ERROR", "bind socket error");
+			Log::Write(LOG_ERROR, "Bind socket error");
 			Close();
 		}
-        Log::Write("TRACE", "Socket::Bind Port:" + std::to_string(port));
+        Log::Write(LOG_TRACE, "Socket::Bind port:" + Convert::Int2Str(port));
 		return n;
 	}
 
@@ -121,10 +125,10 @@ namespace Matrix
 		int n;
 		if ((n = listen(m_sockfd, backlog)) == -1)
 		{
-			Log::Write("ERROR", "listen socket error");
+			Log::Write(LOG_ERROR, "Listen socket error");
 			Close();
 		}
-        Log::Write("TRACE", "Socket::Listen Start.");
+        Log::Write(LOG_TRACE, "Socket::Listen start.");
 		return n;
 	}
 
@@ -133,10 +137,10 @@ namespace Matrix
 		SOCKET connfd;
 		if ((connfd = accept(m_sockfd, addr, len)) == INVALID_SOCKET)
 		{
-			Log::Write("ERROR", "accept socket error");
+			Log::Write(LOG_ERROR, "Accept socket error");
 			Close();
 		}
-        Log::Write("TRACE", "Socket::Accept");
+        Log::Write(LOG_TRACE, "Socket::Accept");
 		return connfd;
 	}
 
@@ -145,7 +149,7 @@ namespace Matrix
 		int n;
 		if ((n = connect(m_sockfd, addr, len)) < 0)
 		{
-			Log::Write("ERROR", "connect socket error");
+			Log::Write(LOG_ERROR, "Connect socket error");
 			Close();
 		}
 		return n;

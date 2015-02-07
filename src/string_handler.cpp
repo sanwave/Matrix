@@ -57,16 +57,13 @@ namespace Matrix
         {
             return source;
         }
-        for (int i = 0; source.at(i) == ' '; ++i)
+        for (size_t i = 0; source.at(i) == ' ' && i < source.length(); ++i)
         {
-            if (NULL != source.at(i + 1))
-            {
-                source = source.substr(i + 1);
-            }
-            else
-            {
-                return "";
-            }
+            source = source.substr(i + 1);
+        }
+        if (0 == source.length())
+        {
+            return "";
         }
         for (int i = source.length() - 1; i >= 0 && source.at(i) == ' '; --i)
         {
@@ -82,7 +79,7 @@ namespace Matrix
 
     char * StrHandle::nCopy(char * dest, const char * source, size_t size)
     {
-        *(dest + size) = 0;
+        //*(dest + size) = 0;
         for (size_t i = 0; i < size; ++i)
         {
             *(dest + i) = *(source + i);
@@ -102,6 +99,7 @@ namespace Matrix
         return 0;
     }
 
+    //there is some problem
     std::string StrHandle::Format(const char * format, const char * args...)
     {
         std::stringstream stream;
@@ -110,6 +108,7 @@ namespace Matrix
             if ('{' != *format)
             {
                 stream << *format;
+                ++format;
             }            
             else if('{' == *(format + 1))
             {

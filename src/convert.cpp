@@ -13,6 +13,9 @@
 
 #include "convert.h"
 
+#include <string>
+#include <sstream>
+
 namespace Matrix
 {
 	template <class T>
@@ -26,7 +29,7 @@ namespace Matrix
 	std::string Convert::Int2Str(int value)
 	{
 #ifdef WIN32
-		return std::to_string(value).c_str();
+		return std::to_string(value);
 #else
         return ToStr(value);
 #endif

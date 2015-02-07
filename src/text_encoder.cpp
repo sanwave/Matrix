@@ -13,7 +13,14 @@
 
 
 #include "text_encoder.h"
-
+/*
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#elif __linux__
+#include <iconv.h>
+#endif
+*/
 namespace Matrix
 {
 

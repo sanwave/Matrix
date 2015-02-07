@@ -16,19 +16,12 @@
 #define _FILE_H_
 
 #include <iostream>
-#include <string>
-#include <fstream>
-
-//for gcc
-#include <cstring>
-#ifdef __linux__
-#include <climits>
-#endif
 
 #include "text_encoder.h"
 
 #define FBUFSIZ 4096
 #define FPAGESIZ 1024 * 1024
+
 
 namespace Matrix
 {

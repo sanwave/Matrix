@@ -16,30 +16,25 @@
 #define _LOG_H_
 
 #include <iostream>
-#include <fstream>
 
-//for gcc
-#include <cstring>
-
-#ifdef WIN32
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#else
-#include <unistd.h>
-#include <climits>
-#endif
-
-#include "datetime.h"
-#include "string_handler.h"
+#define LOG_ERROR  4
+#define LOG_WARN   3
+#define LOG_INFO   2
+#define LOG_DEBUG  1
+#define LOG_TRACE  0
 
 namespace Matrix
 {
-	class Log
-	{
-	public:
-        static int Write(std::string level, std::string info);
-		static int Write(const char * level, const char * info);
-	};
+    class Log
+    {
+    public:
+        static int Write(unsigned char level, std::string info);
+        static int Write(unsigned char level, const char * info);
+
+        static std::string GetLevelStr(unsigned char level);
+
+        static unsigned char m_level;
+    };
 
 }
 

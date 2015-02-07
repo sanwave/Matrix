@@ -13,19 +13,46 @@
 
 #include "log.h"
 
+#include <fstream>
+
+//for gcc
+#include <cstring>
+
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#else
+#include <unistd.h>
+#include <climits>
+#endif
+
+#include "os.h"
+#include "datetime.h"
+#include "string_handler.h"
+
 namespace Matrix
 {
-    int Log::Write(std::string level, std::string info)
+    unsigned char Log::m_level = 1;
+
+    int Log::Write(unsigned char level, std::string info)
     {
-        return Write(level.c_str(), info.c_str());
+        return Write(level, info.c_str());
     }
 
-    int Log::Write(const char * level, const char * info)
+    int Log::Write(unsigned char level, const char * info)
     {
-        std::cout << DateTime::Now() << "    " << level << "    " << info << std::endl;
+        if (level <= m_level)
+        {
+            return DO_NOTHING;
+        }
+
+        std::string timestr = DateTime::Now();
+        std::string levelstr = GetLevelStr(level);
+        std::cout << timestr << "    " << levelstr << "    " << info << std::endl;
+
         int ret = 0;
 #ifdef WIN32
-        char filename[MAX_PATH];
+        char filename[MAX_PATH] = { 0 };
         ret = ::GetModuleFileNameA(NULL, filename, MAX_PATH);
 #else
         char filename[PATH_MAX];
@@ -46,6 +73,7 @@ namespace Matrix
             }
 #endif
             StrHandle::nCopy(++separator, "sys.log", 7);
+            *(separator + 8) = 0;
 
             std::fstream file;
             file.open(filename, std::ios_base::app | std::ios_base::binary);
@@ -53,18 +81,42 @@ namespace Matrix
             {
                 file.close();
                 file.open(filename, std::ios_base::out | std::ios_base::binary);
-            }
-            std::string time = DateTime::Now();
-            file.write(time.c_str(), time.length());
+            }            
+            file.write(timestr.c_str(), timestr.length());
             file.write("    ", 4);
-            file.write(level, strlen(level));
+            file.write(levelstr.c_str(), levelstr.length());
             file.write("    ", 4);
             size_t app_size = strlen(info);
             file.write(info, app_size);
             file.write("\r\n", 2);
             file.close();
-            return 1;
+            return DO_SUCCEED;
         }
-        return -1;
+        return DO_ERROR;
     }
+
+    std::string Log::GetLevelStr(unsigned char level)
+    {
+        switch (level)
+        {
+        case LOG_ERROR:
+            return "ERROR";
+
+        case LOG_WARN:
+            return "WARN";
+
+        case LOG_INFO:
+            return "INFO";
+
+        case LOG_DEBUG:
+            return "DEBUT";
+
+        case LOG_TRACE:
+            return "TRACE";
+            
+        default:
+            return "";
+        }
+    }
+
 }

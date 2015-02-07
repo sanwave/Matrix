@@ -14,7 +14,7 @@ environment.o: ./include/environment.h
 file.o: ./include/file.h
 	g++ -c ./src/file.cpp -I ./include
 host.o: ./include/host.h
-	g++ -c ./src/host.cpp -I ./include
+	g++ -c ./src/host.cpp -I ./include -std=c++0x
 log.o: ./include/log.h
 	g++ -c ./src/log.cpp -I ./include
 md5.o: ./include/md5.h

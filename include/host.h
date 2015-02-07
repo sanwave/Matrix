@@ -19,14 +19,6 @@
 #include <string>
 #include <list>
 
-#include "text_encoder.h"
-
-#ifdef WIN32
-#include <Ws2tcpip.h>
-#else
-#include <arpa/inet.h>
-#endif
-
 namespace Matrix
 {
 	struct Host
@@ -40,6 +32,7 @@ namespace Matrix
         std::string NickName;
 
         void SetIp(unsigned long ip);
+        std::string Addr() const;
 	};
 
     class Hosts

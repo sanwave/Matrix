@@ -14,22 +14,20 @@
 #ifndef _OS_H_
 #define _OS_H_
 
-#ifdef WIN32
-#include "socket.h" //#include <Windows.h> is confict with socket.h
-#else
-#include <cstdlib>
-#include <unistd.h>
-#endif
+#define DO_SUCCEED              1
+#define DO_NOTHING              0
+#define DO_ERROR               -1
+#define DO_BUSINESS_ERROR      -2
 
 namespace Matrix
 {
     class OS
     {
     public:
+        static void Pause();
         static void Sleep(unsigned int milliseconds);
         static void CleanPtr(void ** ptr);
     };
-
 }
 
 #endif
