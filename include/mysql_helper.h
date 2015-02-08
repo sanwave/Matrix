@@ -27,34 +27,34 @@
 namespace Matrix
 {
 
-	class MySqlHelper
-	{
-	public:
-		MySqlHelper();
-		MySqlHelper(std::string host, std::string user, std::string pwd, std::string db_name);
+    class MySqlHelper
+    {
+    public:
+        MySqlHelper();
+        MySqlHelper(std::string host, std::string user, std::string pwd, std::string db_name);
         MySqlHelper(const MySqlHelper & src);
-		~MySqlHelper();
+        ~MySqlHelper();
 
-		void SetDbInfo(std::string host, std::string user, std::string pwd, std::string db_name);		
-		void SetEncode(std::string encode);
+        void SetDbInfo(std::string host, std::string user, std::string pwd, std::string db_name);
+        void SetEncode(std::string encode);
 
-		int InitMySQL();
-		int ExecQuery(std::string sql);
-		int ExecRead(std::string sql);
+        int InitMySQL();
+        int ExecQuery(std::string sql);
+        int ExecRead(std::string sql);
 
-		std::string ErrorInfo();
+        std::string ErrorInfo();
 
-	private:
-		MYSQL *m_conn;
+    private:
+        MYSQL *m_conn;
 
-		std::string m_host;
-		std::string m_user;
-		std::string m_pwd;
-		std::string m_db_name;
-		std::string m_encode;
-		std::string m_error_info;
+        std::string m_host;
+        std::string m_user;
+        std::string m_pwd;
+        std::string m_db_name;
+        std::string m_encode;
+        std::string m_error_info;
 
-	};
+    };
 }
 
 #endif

@@ -21,18 +21,18 @@
 
 namespace Matrix
 {
-	struct Host
-	{
-	public:
-		std::string Name;
-		std::string User;
-		std::string Ip;
-		unsigned short Port;
+    struct Host
+    {
+    public:
+        std::string Name;
+        std::string User;
+        std::string Ip;
+        unsigned short Port;
         std::string NickName;
 
         std::string Addr() const;
-        void SetIp(unsigned long ip);        
-	};
+        void SetIp(unsigned long ip);
+    };
 
     class Hosts
     {

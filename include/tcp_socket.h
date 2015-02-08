@@ -18,27 +18,27 @@
 
 namespace Matrix
 {
-	class TcpConnection :public Socket
-	{
-	public:
-		TcpConnection(SOCKET connfd);
+    class TcpConnection :public Socket
+    {
+    public:
+        TcpConnection(SOCKET connfd);
         TcpConnection(const TcpConnection & conn);
-		~TcpConnection();
+        ~TcpConnection();
 
-	private:
-		//SOCKET m_connfd;
-	};
+    private:
+        //SOCKET m_connfd;
+    };
 
-	class TcpSocket :public Socket
-	{
-	public:
-		TcpSocket();
+    class TcpSocket :public Socket
+    {
+    public:
+        TcpSocket();
         TcpSocket(SOCKET connfd);
         TcpSocket(const TcpSocket & src);
-		~TcpSocket();
+        ~TcpSocket();
 
-		TcpConnection * Accept(struct sockaddr * addr, socklen_t * len);
-	};
+        TcpConnection * Accept(struct sockaddr * addr, socklen_t * len);
+    };
 }
 
 #endif

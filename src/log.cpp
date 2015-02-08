@@ -81,7 +81,7 @@ namespace Matrix
             {
                 file.close();
                 file.open(filename, std::ios_base::out | std::ios_base::binary);
-            }            
+            }
             file.write(timestr.c_str(), timestr.length());
             file.write("    ", 4);
             file.write(levelstr.c_str(), levelstr.length());
@@ -113,7 +113,7 @@ namespace Matrix
 
         case LOG_TRACE:
             return "TRACE";
-            
+
         default:
             return "";
         }

@@ -18,27 +18,27 @@
 
 namespace Matrix
 {
-	template <class T>
-	std::string Convert::ToStr(T value)
-	{
-		std::stringstream strvalue;
-		strvalue << value;
-		return strvalue.str();
-	}
+    template <class T>
+    std::string Convert::ToStr(T value)
+    {
+        std::stringstream strvalue;
+        strvalue << value;
+        return strvalue.str();
+    }
 
-	std::string Convert::Int2Str(int value)
-	{
+    std::string Convert::Int2Str(int value)
+    {
 #ifdef WIN32
-		return std::to_string(value);
+        return std::to_string(value);
 #else
         return ToStr(value);
 #endif
-	}
+    }
 
-	int Convert::Str2Int(std::string value)
-	{
+    int Convert::Str2Int(std::string value)
+    {
 #ifdef WIN32
-		return std::stoi(value);
+        return std::stoi(value);
 #else
         std::stringstream s;
         int result = 0;
@@ -46,6 +46,6 @@ namespace Matrix
         s >> result;
         return result;
 #endif
-	}
+    }
 
 }

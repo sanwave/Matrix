@@ -109,8 +109,8 @@ namespace Matrix
             {
                 stream << *format;
                 ++format;
-            }            
-            else if('{' == *(format + 1))
+            }
+            else if ('{' == *(format + 1))
             {
                 stream << '{';
                 format += 2;

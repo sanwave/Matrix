@@ -22,81 +22,81 @@
 
 namespace Matrix
 {
-	std::string DateTime::Now()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		char str_time[21];
-		strftime(str_time, 21, "%Y-%m-%d %H:%M:%S", tm_now);
-		return std::string(str_time);
-	}
+    std::string DateTime::Now()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        char str_time[21];
+        strftime(str_time, 21, "%Y-%m-%d %H:%M:%S", tm_now);
+        return std::string(str_time);
+    }
 
-	time_t DateTime::UnixTime()
-	{
+    time_t DateTime::UnixTime()
+    {
 #ifdef WIN32
-		SYSTEMTIME	st;
-		_int64		ft;
-		::GetSystemTime(&st);
-		::SystemTimeToFileTime(&st, (FILETIME *)&ft);
-		return	(long)((ft - UNIXTIME_BASE) / 10000000);
+        SYSTEMTIME	st;
+        _int64		ft;
+        ::GetSystemTime(&st);
+        ::SystemTimeToFileTime(&st, (FILETIME *)&ft);
+        return	(long)((ft - UNIXTIME_BASE) / 10000000);
 #else
         return time(NULL);
 #endif
-	}
+    }
 
-	int DateTime::Second()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_sec;
-	}
+    int DateTime::Second()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_sec;
+    }
 
-	int DateTime::Minute()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_min;
-	}
+    int DateTime::Minute()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_min;
+    }
 
-	int DateTime::Hour()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_hour;
-	}
+    int DateTime::Hour()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_hour;
+    }
 
-	int DateTime::Day()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_mday;
-	}
+    int DateTime::Day()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_mday;
+    }
 
-	int DateTime::DayOfWeek()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_wday;
-	}
+    int DateTime::DayOfWeek()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_wday;
+    }
 
-	int DateTime::DayOfYear()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_yday;
-	}
+    int DateTime::DayOfYear()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_yday;
+    }
 
-	int DateTime::Month()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_mon;
-	}
+    int DateTime::Month()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_mon;
+    }
 
-	int DateTime::Year()
-	{
-		time_t now = time(NULL);
-		struct tm *tm_now = localtime(&now);
-		return tm_now->tm_year;
-	}
+    int DateTime::Year()
+    {
+        time_t now = time(NULL);
+        struct tm *tm_now = localtime(&now);
+        return tm_now->tm_year;
+    }
 }

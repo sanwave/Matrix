@@ -77,7 +77,7 @@ namespace Matrix
     {
         std::list<Host *> hosts;
         std::list<Host *>::const_iterator iter;
-        for (iter = m_hosts.begin(); iter!=m_hosts.end(); ++iter)
+        for (iter = m_hosts.begin(); iter != m_hosts.end(); ++iter)
         {
             if (host_name == (*iter)->Name)
             {

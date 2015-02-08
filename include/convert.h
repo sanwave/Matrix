@@ -20,14 +20,14 @@
 
 namespace Matrix
 {
-	class Convert
-	{
-	public:
-		template <class T>
-		static std::string ToStr(T value);
-		static std::string Int2Str(int value);
-		static int Str2Int(std::string value);
-	};
+    class Convert
+    {
+    public:
+        template <class T>
+        static std::string ToStr(T value);
+        static std::string Int2Str(int value);
+        static int Str2Int(std::string value);
+    };
 
 }
 

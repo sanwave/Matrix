@@ -22,32 +22,32 @@
 
 namespace Matrix
 {
-	class DateTime
-	{
-	public:
-		//get now date and time string
-		static std::string Now();
+    class DateTime
+    {
+    public:
+        //get now date and time string
+        static std::string Now();
 
-		static time_t UnixTime();
+        static time_t UnixTime();
 
-		//get second
-		static int Second();
-		//get minute
-		static int Minute();
-		//get hour
-		static int Hour();
+        //get second
+        static int Second();
+        //get minute
+        static int Minute();
+        //get hour
+        static int Hour();
 
-		//get day of month
-		static int Day();
-		//get day of week
-		static int DayOfWeek();
-		//get day of year
-		static int DayOfYear();
-		//get month
-		static int Month();
-		//get year
-		static int Year();
-	};
+        //get day of month
+        static int Day();
+        //get day of week
+        static int DayOfWeek();
+        //get day of year
+        static int DayOfYear();
+        //get month
+        static int Month();
+        //get year
+        static int Year();
+    };
 }
 
 #endif

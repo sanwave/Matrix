@@ -16,40 +16,40 @@
 namespace Matrix
 {
 
-	UdpSocket::UdpSocket()
-	{
-		Create(AF_INET, SOCK_DGRAM, 0);
-		bool opt = true;
+    UdpSocket::UdpSocket()
+    {
+        Create(AF_INET, SOCK_DGRAM, 0);
+        bool opt = true;
         //reinterpret_cast<char FAR *>  ==>>  const char * ???
-		SetOption(SOL_SOCKET, SO_BROADCAST, (const char *)(&opt), sizeof(opt));
-	}
+        SetOption(SOL_SOCKET, SO_BROADCAST, (const char *)(&opt), sizeof(opt));
+    }
 
-	UdpSocket::~UdpSocket()
-	{
+    UdpSocket::~UdpSocket()
+    {
 
-	}
+    }
 
-	int UdpSocket::SendMsg(unsigned long addr, unsigned short port, const char * msg)
-	{
-		sockaddr_in target;
-		target.sin_family = AF_INET;
-		target.sin_addr.s_addr = addr;
-		target.sin_port = htons(port);
+    int UdpSocket::SendMsg(unsigned long addr, unsigned short port, const char * msg)
+    {
+        sockaddr_in target;
+        target.sin_family = AF_INET;
+        target.sin_addr.s_addr = addr;
+        target.sin_port = htons(port);
 
-		SendTo(msg, strlen(msg), 0, (sockaddr *)&target, sizeof(target));
+        SendTo(msg, strlen(msg), 0, (sockaddr *)&target, sizeof(target));
 
-		return 0;
-	}
+        return 0;
+    }
 
-	int UdpSocket::SendMsg(const char * addr, unsigned short port, const char * msg)
-	{
-		sockaddr_in target;
-		target.sin_family = AF_INET;
-		target.sin_port = htons(port);
-		inet_pton(AF_INET, addr, &target.sin_addr);
+    int UdpSocket::SendMsg(const char * addr, unsigned short port, const char * msg)
+    {
+        sockaddr_in target;
+        target.sin_family = AF_INET;
+        target.sin_port = htons(port);
+        inet_pton(AF_INET, addr, &target.sin_addr);
 
-		SendTo(msg, strlen(msg), 0, (sockaddr *)&target, sizeof(target));
+        SendTo(msg, strlen(msg), 0, (sockaddr *)&target, sizeof(target));
 
-		return 0;
-	}
+        return 0;
+    }
 }

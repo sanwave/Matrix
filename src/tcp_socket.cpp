@@ -15,16 +15,16 @@
 
 namespace Matrix
 {
-	TcpConnection::TcpConnection(SOCKET connfd)
-		: Socket(connfd)	        {}
+    TcpConnection::TcpConnection(SOCKET connfd)
+        : Socket(connfd)	        {}
 
     TcpConnection::TcpConnection(const TcpConnection & conn)
         : Socket(conn.FD())         {}
 
-	TcpConnection::~TcpConnection()	{}
+    TcpConnection::~TcpConnection()	{}
 
 
-	TcpSocket::TcpSocket()	        {}
+    TcpSocket::TcpSocket()	        {}
 
     TcpSocket::TcpSocket(SOCKET connfd)
         : Socket(connfd)            {}
@@ -32,13 +32,13 @@ namespace Matrix
     TcpSocket::TcpSocket(const TcpSocket & src)
         : Socket(src.FD())          {}
 
-	TcpSocket::~TcpSocket()         {}
+    TcpSocket::~TcpSocket()         {}
 
-	TcpConnection * TcpSocket::Accept(struct sockaddr * addr, socklen_t * len)
-	{
-		SOCKET connfd = Socket::Accept(addr, len);
+    TcpConnection * TcpSocket::Accept(struct sockaddr * addr, socklen_t * len)
+    {
+        SOCKET connfd = Socket::Accept(addr, len);
         TcpConnection *conn = new TcpConnection(connfd);
-		return conn;
-	}
+        return conn;
+    }
 
 }
