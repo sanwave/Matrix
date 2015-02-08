@@ -32,7 +32,7 @@
 
 namespace Matrix
 {
-    unsigned char Log::m_level = 1;
+    unsigned char Log::m_level = LOG_DEBUG;
 
     int Log::Write(unsigned char level, std::string info)
     {
@@ -41,7 +41,7 @@ namespace Matrix
 
     int Log::Write(unsigned char level, const char * info)
     {
-        if (level <= m_level)
+        if (level < m_level)
         {
             return DO_NOTHING;
         }

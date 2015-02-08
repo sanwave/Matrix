@@ -102,7 +102,7 @@ namespace Matrix
 		}
 	}
 
-	TextEncoder::TextEncoder(const TextEncoder & src) :m_copy_flag(false), m_buffer(NULL)
+	TextEncoder::TextEncoder(const TextEncoder & src)
 	{
 		m_copy_flag = src.CopyFlag();
 		wchar_t * buffer = src.Buffer();

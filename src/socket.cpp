@@ -24,7 +24,6 @@ namespace Matrix
 		Init();
 	}
 
-
 	Socket::Socket(SOCKET sockfd)
 	{
 		Init();
@@ -38,7 +37,7 @@ namespace Matrix
 #endif
 	}
 
-	SOCKET Socket::FD()
+	SOCKET Socket::FD() const
 	{
 		return m_sockfd;
 	}

@@ -37,44 +37,32 @@ namespace Matrix
     class Socket
     {
     public:
-
         Socket();
-
         Socket(SOCKET sockfd);
-
         ~Socket();
 
-        SOCKET FD();
+        SOCKET FD() const;
 
         int SetBlock();
-
         int SetNonBlock();
-
         int SetOption(int level, int optname, const char * optval, int optlen);
 
         int Create(int family, int type, int protocol);
-
         int Bind(const char * ip, unsigned short port);
-
         int Listen(int backlog);
-
         SOCKET Accept(struct sockaddr * addr, socklen_t * len);
 
         int Connect(const struct sockaddr * addr, int len);
 
         int Send(const char * buff, int len, int flags);
-
         int Recv(char * buff, int len, int flags);
-
         int SendTo(const char * buff, int len, int flags, const sockaddr *to, int tolen);
-
         int RecvFrom(char * buff, int len, int flags, struct sockaddr *from, socklen_t * fromlen);
 
         int Close();
 
     private:
         int Init();
-
 
     private:
         SOCKET m_sockfd;

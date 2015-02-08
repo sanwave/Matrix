@@ -13,7 +13,7 @@
 
 #include "mysql_helper.h"
 
-namespace
+namespace Matrix
 {
 
 	MySqlHelper::MySqlHelper() : m_conn(NULL), m_encode("gbk")
@@ -31,6 +31,22 @@ namespace
 			m_error_info = "mysql_library_init() failed";
 		}
 	}
+
+    MySqlHelper::MySqlHelper(const MySqlHelper & src)
+        :m_conn(NULL)
+    {
+        m_host = src.m_host;
+        m_user = src.m_user;
+        m_pwd = src.m_pwd;
+        m_db_name = src.m_db_name;
+        m_encode = src.m_encode;
+        m_error_info = src.m_error_info;
+
+        if (NULL != src.m_conn)
+        {
+            InitMySQL();
+        }
+    }
 
 	MySqlHelper::~MySqlHelper()
 	{

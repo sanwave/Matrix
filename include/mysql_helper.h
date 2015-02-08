@@ -24,33 +24,27 @@
 
 #include <mysql.h>
 
-namespace
+namespace Matrix
 {
 
 	class MySqlHelper
 	{
 	public:
-
 		MySqlHelper();
-
 		MySqlHelper(std::string host, std::string user, std::string pwd, std::string db_name);
-
+        MySqlHelper(const MySqlHelper & src);
 		~MySqlHelper();
 
-		void SetDbInfo(std::string host, std::string user, std::string pwd, std::string db_name);
-		
+		void SetDbInfo(std::string host, std::string user, std::string pwd, std::string db_name);		
 		void SetEncode(std::string encode);
 
 		int InitMySQL();
-
 		int ExecQuery(std::string sql);
-
 		int ExecRead(std::string sql);
 
 		std::string ErrorInfo();
 
 	private:
-
 		MYSQL *m_conn;
 
 		std::string m_host;

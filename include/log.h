@@ -32,7 +32,6 @@ namespace Matrix
         static int Write(unsigned char level, const char * info);
 
         static std::string GetLevelStr(unsigned char level);
-
         static unsigned char m_level;
     };
 

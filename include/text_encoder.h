@@ -46,27 +46,17 @@ namespace Matrix
 	class TextEncoder
 	{
 	public:
-
 		TextEncoder(const char *buffer);
-
 		TextEncoder(const wchar_t *buffer);
-
 		TextEncoder(std::string &buffer);
-
 		TextEncoder(std::wstring &buffer);
-
 		TextEncoder(const TextEncoder & src);
-
 		~TextEncoder();
 
 		char* Ansi() const;
-
 		char* Utf8() const;
-
 		wchar_t* Unicode();
-
 		bool CopyFlag() const;
-
 		wchar_t * Buffer() const;
 
 		/// <summary>

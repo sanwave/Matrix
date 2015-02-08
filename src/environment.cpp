@@ -108,5 +108,3 @@ namespace Matrix
 #else
 #endif
 }
-
-

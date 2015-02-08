@@ -28,11 +28,10 @@ namespace Matrix
 		std::string User;
 		std::string Ip;
 		unsigned short Port;
-
         std::string NickName;
 
-        void SetIp(unsigned long ip);
         std::string Addr() const;
+        void SetIp(unsigned long ip);        
 	};
 
     class Hosts
@@ -40,13 +39,14 @@ namespace Matrix
     public:
         Hosts();
         ~Hosts();
+
         int AddHost(Host * host);
         int RemoveHost(Host * host);
         std::list<Host *> GetHostByName(std::string host_name);
         Host *GetHostByAddr(std::string host_addr);
         Host *GetHostByAddr(unsigned long host_addr);
-
         static Host GetLocalHost();
+
     private:
         std::list<Host *> m_hosts;
     };

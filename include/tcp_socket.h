@@ -21,29 +21,23 @@ namespace Matrix
 	class TcpConnection :public Socket
 	{
 	public:
-
 		TcpConnection(SOCKET connfd);
-
+        TcpConnection(const TcpConnection & conn);
 		~TcpConnection();
 
 	private:
-#ifdef WIN32
-		SOCKET m_connfd;
-#elif _linux_
-		int m_connfd;
-#endif
+		//SOCKET m_connfd;
 	};
 
 	class TcpSocket :public Socket
 	{
 	public:
-
 		TcpSocket();
-
+        TcpSocket(SOCKET connfd);
+        TcpSocket(const TcpSocket & src);
 		~TcpSocket();
 
 		TcpConnection * Accept(struct sockaddr * addr, socklen_t * len);
-
 	};
 }
 
