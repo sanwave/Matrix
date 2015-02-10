@@ -98,9 +98,8 @@ namespace Matrix
         }
         return 0;
     }
-
-    //there is some problem
-    std::string StrHandle::Format(const char * format, const char * args...)
+        
+    std::string StrHandle::Format(const char * format, const char * args, ...)
     {
         std::stringstream stream;
         while (*format)
@@ -118,7 +117,7 @@ namespace Matrix
             else if ('{' != *(format + 1) && NULL != strchr(format, '}'))
             {
                 std::string index = BetweenTrim(format, "{", "}");
-                stream << args[stoi(index)];
+                stream << *(&args + stoi(index));
                 format = strchr(format, '}') + 1;
             }
             else

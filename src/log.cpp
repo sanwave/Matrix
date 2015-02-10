@@ -55,7 +55,7 @@ namespace Matrix
         char filename[MAX_PATH] = { 0 };
         ret = ::GetModuleFileNameA(NULL, filename, MAX_PATH);
 #else
-        char filename[PATH_MAX];
+        char filename[PATH_MAX] = { 0 };
         //ret = readlink("/proc/self/exe", filename, PATH_MAX);
         char cmd[30] = { 0 };
         snprintf(cmd, sizeof(cmd), "/proc/%d/exe", getpid());
@@ -72,7 +72,7 @@ namespace Matrix
                 *(++separator) = '/';
             }
 #endif
-            StrHandle::nCopy(++separator, "sys.log", 7);
+            StrHandle::nCopy(separator + 1, "sys.log", 7);
             *(separator + 8) = 0;
 
             std::fstream file;

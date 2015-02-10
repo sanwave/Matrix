@@ -34,7 +34,7 @@ namespace Matrix
         static int nCompare(const char * left, const char * right, size_t size);
         static std::string ToLower(const char * source) { return ""; }
         static std::string ToUpper(const char * source) { return ""; }
-        static std::string Format(const char * format, const char * args...);
+        static std::string Format(const char * format, const char * args, ...);
     };
 }
 
