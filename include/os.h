@@ -19,6 +19,9 @@
 #define DO_ERROR               -1
 #define DO_BUSINESS_ERROR      -2
 
+#define SIZE_ALL               -1
+#define SIZE_ON_HEAP           -2
+
 namespace Matrix
 {
     class OS
