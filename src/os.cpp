@@ -59,7 +59,7 @@ namespace Matrix
     {
         if (NULL != *ptr)
         {
-            delete *ptr;
+            delete (*ptr);
             *ptr = NULL;
         }
     }

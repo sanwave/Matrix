@@ -18,17 +18,6 @@
 
 namespace Matrix
 {
-    class TcpConnection :public Socket
-    {
-    public:
-        TcpConnection(SOCKET connfd);
-        TcpConnection(const TcpConnection & conn);
-        ~TcpConnection();
-
-    private:
-        //SOCKET m_connfd;
-    };
-
     class TcpSocket :public Socket
     {
     public:

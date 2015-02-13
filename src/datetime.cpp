@@ -53,7 +53,9 @@ namespace Matrix
         ::SystemTimeToFileTime(&st, (FILETIME *)&ft);
         return (((ft - UNIXTIME_BASE) / 10000) % 1000);
 #else
-        return (xtime.tv_nsec + time_interpolator_get_offset()) / 1000000;
+        struct timespec xtime;
+        clock_gettime(CLOCK_REALTIME, &xtime);
+        return (xtime.tv_nsec) / 1000000;
 #endif
     }
 

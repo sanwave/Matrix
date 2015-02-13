@@ -61,8 +61,9 @@ namespace Matrix
 
         int Close();
 
-    private:
-        int Init();
+    //private:
+        static int Init();
+        static void Uninit();
 
     private:
         SOCKET m_sockfd;

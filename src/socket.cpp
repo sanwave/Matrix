@@ -20,22 +20,14 @@
 namespace Matrix
 {
     Socket::Socket()
-    {
-        Init();
-    }
+    {}
 
     Socket::Socket(SOCKET sockfd)
-    {
-        Init();
-        m_sockfd = sockfd;
-    }
+        :m_sockfd(sockfd)
+    {}
 
     Socket::~Socket()
-    {
-#ifdef WIN32
-        WSACleanup();
-#endif
-    }
+    {}
 
     SOCKET Socket::FD() const
     {
@@ -50,17 +42,24 @@ namespace Matrix
         ret = WSAStartup(MAKEWORD(2, 0), &wd);
         if (ret < 0)
         {
-            Log::Write(LOG_ERROR, "Winsock startup failed\n");
+            Log::Write(LOG_ERROR, "Winsock startup failed");
         }
 #endif
         return ret;
+    }
+
+    void Socket::Uninit()
+    {
+#ifdef WIN32
+        WSACleanup();
+#endif
     }
 
     int Socket::Create(int family, int type, int protocol)
     {
         if ((m_sockfd = socket(family, type, protocol)) == INVALID_SOCKET)
         {
-            Log::Write(LOG_ERROR, "Create socket error");
+            Log::Write(LOG_ERROR, "Socket::Create error");
             Close();
             return -1;
         }
@@ -112,10 +111,9 @@ namespace Matrix
         }
         if ((n = bind(m_sockfd, (struct sockaddr*)&addr, sizeof(addr))) < 0)
         {
-            Log::Write(LOG_ERROR, "Bind socket error");
+            Log::Write(LOG_ERROR, "Socket::Bind error");
             Close();
         }
-        Log::Write(LOG_TRACE, "Socket::Bind port:" + Convert::Int2Str(port));
         return n;
     }
 
@@ -124,10 +122,9 @@ namespace Matrix
         int n;
         if ((n = listen(m_sockfd, backlog)) == -1)
         {
-            Log::Write(LOG_ERROR, "Listen socket error");
+            Log::Write(LOG_ERROR, "Socket::Listen error");
             Close();
         }
-        Log::Write(LOG_TRACE, "Socket::Listen start.");
         return n;
     }
 
@@ -139,7 +136,6 @@ namespace Matrix
             Log::Write(LOG_ERROR, "Accept socket error");
             Close();
         }
-        Log::Write(LOG_TRACE, "Socket::Accept");
         return connfd;
     }
 

@@ -15,15 +15,6 @@
 
 namespace Matrix
 {
-    TcpConnection::TcpConnection(SOCKET connfd)
-        : Socket(connfd)	        {}
-
-    TcpConnection::TcpConnection(const TcpConnection & conn)
-        : Socket(conn.FD())         {}
-
-    TcpConnection::~TcpConnection()	{}
-
-
     TcpSocket::TcpSocket()	        {}
 
     TcpSocket::TcpSocket(SOCKET connfd)

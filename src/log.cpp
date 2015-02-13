@@ -46,8 +46,10 @@ namespace Matrix
         {
             return DO_NOTHING;
         }
-
-        std::string timestr = DateTime::Now()+"."+Convert::Int2Str(DateTime::MilliSeconds());
+        std::string millistr = Convert::Int2Str(DateTime::MilliSeconds());
+        while (millistr.length() < 3)
+            millistr = '0' + millistr;
+        std::string timestr = DateTime::Now() + "." + millistr;
         std::string levelstr = GetLevelStr(level);
         std::cout << timestr << "    " << levelstr << "    " << info << std::endl;
 
@@ -71,7 +73,7 @@ namespace Matrix
             if ('/' != *separator)
             {
                 *(++separator) = '/';
-            }
+        }
 #endif
             StrHandle::nCopy(separator + 1, "sys.log", 7);
             *(separator + 8) = 0;
@@ -92,9 +94,9 @@ namespace Matrix
             file.write("\r\n", 2);
             file.close();
             return DO_SUCCEED;
-        }
-        return DO_ERROR;
     }
+        return DO_ERROR;
+}
 
     std::string Log::GetLevelStr(unsigned char level)
     {
