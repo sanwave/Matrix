@@ -27,6 +27,7 @@
 #endif
 
 #include "os.h"
+#include "convert.h"
 #include "datetime.h"
 #include "string_handler.h"
 
@@ -46,7 +47,7 @@ namespace Matrix
             return DO_NOTHING;
         }
 
-        std::string timestr = DateTime::Now();
+        std::string timestr = DateTime::Now()+"."+Convert::Int2Str(DateTime::MilliSeconds());
         std::string levelstr = GetLevelStr(level);
         std::cout << timestr << "    " << levelstr << "    " << info << std::endl;
 

@@ -33,3 +33,7 @@
 *.tlog
 *.log
 *.pdb
+*.opensdf
+*.idb
+*.suo
+*.user

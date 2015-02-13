@@ -37,7 +37,7 @@ namespace Matrix
         TcpSocket(const TcpSocket & src);
         ~TcpSocket();
 
-        TcpConnection * Accept(struct sockaddr * addr, socklen_t * len);
+        SOCKET Accept(struct sockaddr * addr, socklen_t * len);
     };
 }
 

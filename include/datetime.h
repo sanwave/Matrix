@@ -29,6 +29,7 @@ namespace Matrix
         static std::string Now();
 
         static time_t UnixTime();
+        static time_t MilliSeconds();
 
         //get second
         static int Second();

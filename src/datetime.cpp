@@ -26,7 +26,7 @@ namespace Matrix
     {
         time_t now = time(NULL);
         struct tm *tm_now = localtime(&now);
-        char str_time[21];
+        char str_time[21] = { 0 };
         strftime(str_time, 21, "%Y-%m-%d %H:%M:%S", tm_now);
         return std::string(str_time);
     }
@@ -41,6 +41,19 @@ namespace Matrix
         return	(long)((ft - UNIXTIME_BASE) / 10000000);
 #else
         return time(NULL);
+#endif
+    }
+
+    time_t DateTime::MilliSeconds()
+    {
+#ifdef WIN32
+        SYSTEMTIME	st;
+        _int64		ft;
+        ::GetSystemTime(&st);
+        ::SystemTimeToFileTime(&st, (FILETIME *)&ft);
+        return (((ft - UNIXTIME_BASE) / 10000) % 1000);
+#else
+        return (xtime.tv_nsec + time_interpolator_get_offset()) / 1000000;
 #endif
     }
 
