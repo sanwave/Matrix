@@ -37,6 +37,10 @@ namespace Matrix
 
     int Convert::Str2Int(std::string value)
     {
+        if (value.empty())
+        {
+            return 0;
+        }
 #ifdef WIN32
         return std::stoi(value);
 #else

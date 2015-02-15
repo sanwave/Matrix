@@ -15,13 +15,13 @@
 
 namespace Matrix
 {
-
+    // it will be changed
     UdpSocket::UdpSocket()
     {
-        Create(AF_INET, SOCK_DGRAM, 0);
-        bool opt = true;
+        //Create(AF_INET, SOCK_DGRAM, 0);
+        //bool opt = true;
         //reinterpret_cast<char FAR *>  ==>>  const char * ???
-        SetOption(SOL_SOCKET, SO_BROADCAST, (const char *)(&opt), sizeof(opt));
+        //SetOption(SOL_SOCKET, SO_BROADCAST, (const char *)(&opt), sizeof(opt));
     }
 
     UdpSocket::~UdpSocket()
