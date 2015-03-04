@@ -17,18 +17,12 @@ namespace Matrix
 {
     TcpSocket::TcpSocket()	        {}
 
-    TcpSocket::TcpSocket(SOCKET connfd)
-        : Socket(connfd)            {}
+    TcpSocket::TcpSocket(SOCKET sockfd)
+        : Socket(sockfd)            {}
 
     TcpSocket::TcpSocket(const TcpSocket & src)
         : Socket(src.FD())          {}
 
     TcpSocket::~TcpSocket()         {}
-
-    SOCKET TcpSocket::Accept(struct sockaddr * addr, socklen_t * len)
-    {
-        SOCKET connfd = Socket::Accept(addr, len);
-        return connfd;
-    }
 
 }

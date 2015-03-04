@@ -46,7 +46,7 @@ namespace Matrix
         {
             return DO_NOTHING;
         }
-        std::string millistr = Convert::Int2Str(DateTime::MilliSeconds());
+        std::string millistr = Convert::ToStr(DateTime::MilliSeconds());
         while (millistr.length() < 3)
             millistr = '0' + millistr;
         std::string timestr = DateTime::Now() + "." + millistr;

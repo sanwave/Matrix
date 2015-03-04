@@ -22,11 +22,9 @@ namespace Matrix
     {
     public:
         TcpSocket();
-        TcpSocket(SOCKET connfd);
+        TcpSocket(SOCKET sockfd);
         TcpSocket(const TcpSocket & src);
         ~TcpSocket();
-
-        SOCKET Accept(struct sockaddr * addr, socklen_t * len);
     };
 }
 

@@ -54,14 +54,4 @@ namespace Matrix
         select(0, NULL, NULL, NULL, &val);
 #endif
     }
-
-    void OS::CleanPtr(void ** ptr)
-    {
-        if (NULL != *ptr)
-        {
-            delete (*ptr);
-            *ptr = NULL;
-        }
-    }
-
 }

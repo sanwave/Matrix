@@ -23,9 +23,14 @@ namespace Matrix
     class Convert
     {
     public:
+        // convert object to string
         template <class T>
         static std::string ToStr(T value);
+
+        // convert int to string
         static std::string Int2Str(int value);
+
+        // convert string to int
         static int Str2Int(std::string value);
     };
 

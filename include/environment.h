@@ -68,16 +68,16 @@ namespace Matrix
         MIB_IPADDRROW table[ANY_SIZE];
     } MIB_IPADDRTABLE, *PMIB_IPADDRTABLE;
 
-#else
 #endif
 
     class Environment
     {
     public:
+        // get current dir string, e.g. /usr/local/
         static std::string GetCurrentDir();
+
 #ifdef WIN32
         static AddrInfo * GetIPAddrs(int strict, int *num);
-#else
 #endif
     };
 

@@ -27,9 +27,10 @@ namespace Matrix
     class OS
     {
     public:
+        // system("pause")
         static void Pause();
+        // system sleep some milliseconds
         static void Sleep(unsigned int milliseconds);
-        static void CleanPtr(void ** ptr);
     };
 }
 

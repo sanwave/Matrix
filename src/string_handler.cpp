@@ -17,7 +17,6 @@ namespace Matrix
 {
     std::string StrHandle::Between(const char * source, const char * left, const char * right)
     {
-
         const char * left_pos = source;
         const char * right_pos = source + strlen(source);
 
@@ -77,6 +76,7 @@ namespace Matrix
         return Trim(Between(source, left, right));
     }
 
+    // only copy size character
     char * StrHandle::nCopy(char * dest, const char * source, size_t size)
     {
         //*(dest + size) = 0;
@@ -98,7 +98,7 @@ namespace Matrix
         }
         return 0;
     }
-        
+
     std::string StrHandle::Format(const char * format, const char * args, ...)
     {
         std::stringstream stream;

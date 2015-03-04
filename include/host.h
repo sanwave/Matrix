@@ -30,7 +30,9 @@ namespace Matrix
         unsigned short Port;
         std::string NickName;
 
+        // get addr(ip:port) string, e.g. 172.21.11.169:8086
         std::string Addr() const;
+        // set ip value
         void SetIp(unsigned long ip);
     };
 

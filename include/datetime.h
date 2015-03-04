@@ -28,7 +28,9 @@ namespace Matrix
         //get now date and time string
         static std::string Now();
 
+        // get unix timestamp (second)
         static time_t UnixTime();
+        // get millisecond of now time, 0~999
         static time_t MilliSeconds();
 
         //get second
