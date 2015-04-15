@@ -27,7 +27,6 @@
 #endif
 
 #include "os.h"
-#include "convert.h"
 #include "datetime.h"
 #include "string_handler.h"
 
@@ -46,12 +45,22 @@ namespace Matrix
         {
             return DO_NOTHING;
         }
-        std::string millistr = Convert::ToStr(DateTime::MilliSeconds());
-        while (millistr.length() < 3)
-            millistr = '0' + millistr;
-        std::string timestr = DateTime::Now() + "." + millistr;
-        std::string levelstr = GetLevelStr(level);
-        std::cout << timestr << "    " << levelstr << "    " << info << std::endl;
+
+        std::string time;
+        std::string millisecond;
+        std::string levelstr;
+        std::stringstream line;
+
+        std::stringstream convert;
+        convert << DateTime::MilliSeconds();
+
+        convert >> millisecond;
+        while (millisecond.length() < 3)
+            millisecond = '0' + millisecond;
+
+        time = DateTime::Now() + "." + millisecond;
+        levelstr = GetLevelStr(level);
+        line << time << "    " << levelstr << "    " << info << std::endl;
 
         int ret = 0;
 #ifdef WIN32
@@ -59,40 +68,32 @@ namespace Matrix
         ret = ::GetModuleFileNameA(NULL, filename, MAX_PATH);
 #else
         char filename[PATH_MAX] = { 0 };
-        //ret = readlink("/proc/self/exe", filename, PATH_MAX);
-        char cmd[30] = { 0 };
-        snprintf(cmd, sizeof(cmd), "/proc/%d/exe", getpid());
-        ret = readlink(cmd, filename, PATH_MAX);
+        ret = readlink("/proc/self/exe", filename, PATH_MAX);
+        //char cmd[30] = { 0 };
+        //snprintf(cmd, sizeof(cmd), "/proc/%d/exe", getpid());
+        //ret = readlink(cmd, filename, PATH_MAX);
 #endif
         if (ret > 0 && ret <= sizeof(filename))
         {
 #ifdef WIN32
             char * separator = strrchr(filename, '\\');
 #else
-            char * separator = filename + strlen(filename) - 1;
-            if ('/' != *separator)
-            {
-                *(++separator) = '/';
-        }
+            char * separator = strrchr(filename, '/');
+            //char * separator = filename + strlen(filename) - 1;
+            //if ('/' != *separator)
+            //{
+                //*(++separator) = '/';
+            //}
 #endif
             StrHandle::nCopy(separator + 1, "sys.log", 7);
             *(separator + 8) = 0;
 
             std::fstream file;
-            file.open(filename, std::ios_base::app | std::ios_base::binary);
-            if (!file.is_open())
-            {
-                file.close();
-                file.open(filename, std::ios_base::out | std::ios_base::binary);
-            }
-            file.write(timestr.c_str(), timestr.length());
-            file.write("    ", 4);
-            file.write(levelstr.c_str(), levelstr.length());
-            file.write("    ", 4);
-            size_t app_size = strlen(info);
-            file.write(info, app_size);
-            file.write("\r\n", 2);
+            file.open(filename, std::ios_base::app | std::ios_base::binary);            
+            file.write(line.str().c_str(), line.str().length());
             file.close();
+
+            std::cout << line.str();
             return DO_SUCCEED;
     }
         return DO_ERROR;

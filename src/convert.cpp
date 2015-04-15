@@ -28,7 +28,7 @@ namespace Matrix
 
     std::string Convert::Int2Str(int value)
     {
-        return std::to_string(value);
+        return std::to_string((long long int)value);
     }
 
     int Convert::Str2Int(std::string value)

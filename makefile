@@ -21,7 +21,7 @@ matrix: ${ALL_OBJ}
 	ar -r matrix.a ${ALL_OBJ}
 	rm -f ${ALL_OBJ}
 convert.o: ./include/convert.h
-	g++ -c ./src/convert.cpp -I ./include
+	g++ -c ./src/convert.cpp -I ./include -std=c++0x
 datetime.o: ./include/datetime.h
 	g++ -c ./src/datetime.cpp -I ./include
 environment.o: ./include/environment.h
