@@ -31,6 +31,7 @@
 
 #define REQ_BUF_SIZE 1024
 #define RESP_BUF_SIZE 1024
+#define MAX_TCP_DATA_PAYLOAD 1448
 
 namespace Matrix
 {

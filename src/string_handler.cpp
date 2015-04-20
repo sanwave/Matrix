@@ -56,7 +56,7 @@ namespace Matrix
         {
             return source;
         }
-        for (size_t i = 0; source.at(i) == ' ' && i < source.length(); ++i)
+        for (size_t i = 0; i < source.length() && source.at(i) == ' '; ++i)
         {
             source = source.substr(i + 1);
         }
@@ -64,16 +64,17 @@ namespace Matrix
         {
             return "";
         }
-        for (int i = source.length() - 1; i >= 0 && source.at(i) == ' '; --i)
+        for (size_t i = source.length() - 1; i >= 0 && source.at(i) == ' '; --i)
         {
-            source = source.substr(0, i - 1);
+            source = source.substr(0, i);
         }
         return source;
     }
 
     std::string StrHandle::BetweenTrim(const char * source, const char * left, const char * right)
     {
-        return Trim(Between(source, left, right));
+        std::string str = Between(source, left, right);
+        return Trim(str);
     }
 
     // only copy size character
