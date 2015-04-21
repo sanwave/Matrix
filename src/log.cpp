@@ -89,7 +89,7 @@ namespace Matrix
             *(separator + 8) = 0;
 
             std::fstream file;
-            file.open(filename, std::ios_base::app | std::ios_base::binary);            
+            file.open(filename, std::ios_base::out | std::ios_base::app | std::ios_base::binary);
             file.write(line.str().c_str(), line.str().length());
             file.close();
 

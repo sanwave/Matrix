@@ -435,13 +435,13 @@ namespace Matrix
             return -2;
         }
         char * afilename = Matrix::TextEncoder(filename).Ansi();
-        file.open(afilename, std::ios_base::app | std::ios_base::binary);
-        if (!file.is_open())
+        file.open(afilename, std::ios_base::out | std::ios_base::app | std::ios_base::binary);
+        /*if (!file.is_open())
         {
             file.close();
             file.open(afilename, std::ios_base::out | std::ios_base::binary);
         }
-        else if (0 >= app_size)
+        else */if (0 >= app_size)
         {
             app_size = strlen(text);
         }
