@@ -69,7 +69,23 @@ namespace Matrix
 
     int Socket::SetBlock()
     {
-        return 0;
+        int ret;
+#ifdef WIN32
+        u_long arg = 0;
+        ret = ioctlsocket(m_sockfd, FIONBIO, &arg);
+        if (NO_ERROR != ret)
+        {
+            Log::Write(LOG_ERROR, "Socket::SetBlock error");
+        }
+#else
+        int cflags = fcntl(m_sockfd, F_GETFL, 0);
+        ret = fcntl(m_sockfd, F_SETFL, cflags & ~O_NONBLOCK);
+        if (-1 == ret)
+        {
+            Log::Write(LOG_ERROR, "Socket::SetBlock error");
+        }
+#endif
+        return ret;
     }
 
     int Socket::SetNonBlock()
@@ -78,11 +94,16 @@ namespace Matrix
 #ifdef WIN32
         u_long arg = 1;
         ret = ioctlsocket(m_sockfd, FIONBIO, &arg);
-#else
-        if (fcntl(m_sockfd, F_SETFL, O_NONBLOCK))
+        if (NO_ERROR != ret)
         {
-            Log::Write(LOG_ERROR, "Fcntl error");
-            return -1;
+            Log::Write(LOG_ERROR, "Socket::SetNonBlock error");
+        }
+#else
+        int cflags = fcntl(m_sockfd, F_GETFL, 0);
+        ret = fcntl(m_sockfd, F_SETFL, cflags | O_NONBLOCK);
+        if (-1 == ret)
+        {
+            Log::Write(LOG_ERROR, "Socket::SetNonBlock error");
         }
 #endif
         return ret;
@@ -101,6 +122,7 @@ namespace Matrix
         memset(&addr, 0, sizeof(addr));
         addr.sin_family = AF_INET;
         addr.sin_port = htons(port);
+        // it may be a bug
         if (INADDR_ANY == (unsigned long)ip || INADDR_LOOPBACK == (unsigned long)ip || INADDR_BROADCAST == (unsigned long)ip)
         {
             addr.sin_addr.s_addr = (unsigned long)ip;
