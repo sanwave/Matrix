@@ -18,14 +18,15 @@
 
 namespace Matrix
 {
-    class TcpSocket :public Socket
+    typedef Socket TcpSocket;
+    /*class TcpSocket :public Socket
     {
     public:
         TcpSocket();
         TcpSocket(SOCKET sockfd);
         TcpSocket(const TcpSocket & src);
         ~TcpSocket();
-    };
+    };*/
 }
 
 #endif

@@ -18,17 +18,18 @@
 
 namespace Matrix
 {
-    class UdpSocket : public Socket
-    {
-    public:
-        UdpSocket();
-        ~UdpSocket();
+    typedef Socket UdpSocket;
+    //class UdpSocket : public Socket
+    //{
+    //public:
+    //    UdpSocket();
+    //    ~UdpSocket();
 
-        // send msg to the addr, this version is for broadcast
-        int SendMsg(unsigned long addr, unsigned short port, const char * msg);
-        // send msg to the addr
-        int SendMsg(const char * addr, unsigned short port, const char * msg);
-    };
+    //    // send msg to the addr, this version is for broadcast
+    //    int SendMsg(unsigned long addr, unsigned short port, const char * msg);
+    //    // send msg to the addr
+    //    int SendMsg(const char * addr, unsigned short port, const char * msg);
+    //};
 }
 
 #endif

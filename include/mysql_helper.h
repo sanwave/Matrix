@@ -40,7 +40,7 @@ namespace Matrix
 
         int InitMySQL();
         int ExecQuery(std::string sql);
-        int ExecRead(std::string sql);
+        int ExecRead(std::string sql, void (*handler)(MYSQL_RES *));
 
         std::string ErrorInfo();
 

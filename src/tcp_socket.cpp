@@ -15,7 +15,7 @@
 
 namespace Matrix
 {
-    TcpSocket::TcpSocket()	        {}
+    /*TcpSocket::TcpSocket()	        {}
 
     TcpSocket::TcpSocket(SOCKET sockfd)
         : Socket(sockfd)            {}
@@ -23,6 +23,6 @@ namespace Matrix
     TcpSocket::TcpSocket(const TcpSocket & src)
         : Socket(src.FD())          {}
 
-    TcpSocket::~TcpSocket()         {}
+    TcpSocket::~TcpSocket()         {}*/
 
 }

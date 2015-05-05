@@ -14,8 +14,8 @@
 #include "udp_socket.h"
 
 namespace Matrix
-{
-    UdpSocket::UdpSocket()     {}
+{    
+    /*UdpSocket::UdpSocket()     {}
     UdpSocket::~UdpSocket()    {}
 
     int UdpSocket::SendMsg(unsigned long addr, unsigned short port, const char * msg)
@@ -40,5 +40,5 @@ namespace Matrix
         SendTo(msg, strlen(msg), 0, (sockaddr *)&target, sizeof(target));
 
         return 0;
-    }
+    }*/
 }

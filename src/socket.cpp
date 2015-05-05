@@ -57,14 +57,14 @@ namespace Matrix
 
     int Socket::Create(int family, int type, int protocol)
     {
-        if ((m_sockfd = socket(family, type, protocol)) == INVALID_SOCKET)
+        if (INVALID_SOCKET == (m_sockfd = socket(family, type, protocol)))
         {
             Log::Write(LOG_ERROR, "Socket::Create error");
             Close();
-            return -1;
+            return INVALID_SOCKET;
         }
         Log::Write(LOG_TRACE, "Socket::Create a new socket: " + Convert::Int2Str(m_sockfd));
-        return 0;
+        return m_sockfd;
     }
 
     int Socket::SetBlock()
@@ -123,14 +123,15 @@ namespace Matrix
         addr.sin_family = AF_INET;
         addr.sin_port = htons(port);
         // it may be a bug
-        if (INADDR_ANY == (unsigned long)ip || INADDR_LOOPBACK == (unsigned long)ip || INADDR_BROADCAST == (unsigned long)ip)
+        /*if (INADDR_ANY == (unsigned long)ip || INADDR_LOOPBACK == (unsigned long)ip || INADDR_BROADCAST == (unsigned long)ip)
         {
             addr.sin_addr.s_addr = (unsigned long)ip;
         }
         else
         {
             inet_pton(AF_INET, ip, &addr.sin_addr);
-        }
+        }*/
+        inet_pton(AF_INET, ip, &addr.sin_addr);
         if ((n = bind(m_sockfd, (struct sockaddr*)&addr, sizeof(addr))) < 0)
         {
             Log::Write(LOG_ERROR, "Socket::Bind error");
@@ -142,7 +143,7 @@ namespace Matrix
     int Socket::Listen(int backlog)
     {
         int n;
-        if ((n = listen(m_sockfd, backlog)) == -1)
+        if (-1 == (n = listen(m_sockfd, backlog)))
         {
             Log::Write(LOG_ERROR, "Socket::Listen error");
             Close();
@@ -153,7 +154,7 @@ namespace Matrix
     SOCKET Socket::Accept(struct sockaddr * addr, socklen_t * len)
     {
         SOCKET connfd;
-        if ((connfd = accept(m_sockfd, addr, len)) == INVALID_SOCKET)
+        if (INVALID_SOCKET == (connfd = accept(m_sockfd, addr, len)))
         {
             Log::Write(LOG_ERROR, "Accept socket error");
             Close();
