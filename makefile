@@ -12,9 +12,7 @@ ALL_OBJ=./convert.o \
 		./os.o \
 		./socket.o \
 		./string_handler.o \
-		./tcp_socket.o \
-		./text_encoder.o \
-		./udp_socket.o
+		./text_encoder.o
 
 all: matrix
 matrix: ${ALL_OBJ}
@@ -42,12 +40,8 @@ socket.o: ./include/socket.h
 	g++ -c ./src/socket.cpp -I ./include -std=c++0x
 string_handler.o: ./include/string_handler.h
 	g++ -c ./src/string_handler.cpp -I ./include -std=c++0x
-tcp_socket.o: ./include/tcp_socket.h
-	g++ -c ./src/tcp_socket.cpp -I ./include
 text_encoder.o: ./include/text_encoder.h
 	g++ -c ./src/text_encoder.cpp -I ./include
-udp_socket.o: ./include/udp_socket.h
-	g++ -c ./src/udp_socket.cpp -I ./include
 
 clean: 
 	rm -f ${ALL_OBJ} ./matrix.a

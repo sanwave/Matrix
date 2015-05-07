@@ -35,12 +35,6 @@
     <ClInclude Include="include\host.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\udp_socket.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tcp_socket.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\socket.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -83,12 +77,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\socket.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tcp_socket.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\udp_socket.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\md5.cpp">

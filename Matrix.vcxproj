@@ -99,10 +99,8 @@
     <ClInclude Include="include\os.h" />
     <ClInclude Include="include\socket.h" />
     <ClInclude Include="include\string_handler.h" />
-    <ClInclude Include="include\tcp_socket.h" />
     <ClInclude Include="include\text_encoder.h" />
     <ClInclude Include="include\log.h" />
-    <ClInclude Include="include\udp_socket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\host.cpp" />
@@ -116,9 +114,7 @@
     <ClCompile Include="src\os.cpp" />
     <ClCompile Include="src\socket.cpp" />
     <ClCompile Include="src\string_handler.cpp" />
-    <ClCompile Include="src\tcp_socket.cpp" />
     <ClCompile Include="src\text_encoder.cpp" />
-    <ClCompile Include="src\udp_socket.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
