@@ -32,7 +32,7 @@
 
 namespace Matrix
 {
-    unsigned char Log::m_level = LOG_DEBUG;
+    unsigned char Log::m_level = LOG_TRACE;
 
     int Log::Write(unsigned char level, std::string info)
     {

@@ -203,6 +203,7 @@ namespace Matrix
 
     int Socket::Close()
     {
+        Log::Write(LOG_TRACE, "Close fd:" + Convert::Int2Str(m_sockfd));
 #ifdef WIN32
         return ::closesocket(m_sockfd);
 #elif __linux__

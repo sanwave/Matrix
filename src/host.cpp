@@ -13,13 +13,13 @@
 
 #include "host.h"
 
+#include "socket.h"
 #include "convert.h"
 #include "text_encoder.h"
 
-#ifdef WIN32
-#include <Ws2tcpip.h>
-#else
-#include <arpa/inet.h>
+#ifdef __linux__
+// gethostbyname
+#include <netdb.h>
 #endif
 
 namespace Matrix
@@ -33,9 +33,88 @@ namespace Matrix
         Ip = addr;
     }
 
+    void Host::SetAddr(const char * addr)
+    {
+        const char * port_ptr = strchr(addr, ':');
+        std::string str;
+        if (NULL == port_ptr)
+        {
+            str = addr;
+            Port = 80;
+        }
+        else
+        {
+            str = std::string(addr, port_ptr - addr);
+            Port = Convert::Str2Int(std::string(port_ptr + 1));
+        }
+        if (IsDomain(str.c_str()))
+        {
+            Domain = str;
+            SetIp(Resolve(Domain.c_str()));
+        }
+        else
+        {
+            Ip = str;
+        }
+    }
+
+    int Host::IsDomain(const char* value)
+    {
+        int bRet = 0;
+        if (NULL == value)
+        {
+            return -1;
+        }
+        const char* p = value;
+        for (; *p != '\0'; p++)
+        {
+            if ((isalpha(*p)) && (*p != '.'))
+            {
+                bRet = 1;
+                break;
+            }
+        }
+        return bRet;
+    }
+
+    unsigned long Host::Resolve(const char * domain)
+    {
+        Socket::Init();
+        struct hostent *hptr = NULL;
+        struct sockaddr_in addr;
+        hptr = gethostbyname(domain);
+        Socket::Uninit();
+
+        if (NULL == hptr)
+        {
+            return 0;
+        }
+        switch (hptr->h_addrtype)
+        {
+        case AF_INET:
+        case AF_INET6:
+            memcpy(&addr.sin_addr.s_addr, hptr->h_addr_list[0], hptr->h_length);
+            //inet_ntop(hptr->h_addrtype, *pptr, str, sizeof(str));
+            return addr.sin_addr.s_addr;
+
+        default:
+            return 0;
+        }
+    }
+
     std::string Host::Addr() const
     {
         return Ip + ":" + Convert::Int2Str(Port);
+    }
+
+    std::string Host::DomainAddr() const
+    {
+        if (Domain.empty())
+            return Addr();
+        else if (DEFAULT_HTTP_PORT != Port)
+            return Domain + ":" + Convert::Int2Str(Port);
+        else
+            return Domain;
     }
 
     Hosts::Hosts()
