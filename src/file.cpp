@@ -86,9 +86,9 @@ namespace Matrix
         return m_filename;
     }
 
-    const wchar_t * File::Text(int page, size_t *size)
+    wchar_t * File::Text(int page, size_t *size)
     {
-        const wchar_t * utext = ReadAsText(m_filename, page);
+        wchar_t * utext = ReadAsText(m_filename, page);
         if (NULL == utext)
         {
             return NULL;
@@ -100,7 +100,7 @@ namespace Matrix
         return utext;
     }
 
-    const char * File::AnsiText(int page, size_t *size)
+    char * File::AnsiText(int page, size_t *size)
     {
         const wchar_t * utext = ReadAsText(m_filename, page);
         if (NULL == utext)
@@ -111,7 +111,7 @@ namespace Matrix
         {
             *size = wcslen(utext);
         }
-        const char * atext = Matrix::TextEncoder::UnicodeToAnsi(utext);
+        char * atext = Matrix::TextEncoder::UnicodeToAnsi(utext);
         if (NULL != utext)
         {
             delete utext;
@@ -120,7 +120,7 @@ namespace Matrix
         return atext;
     }
 
-    const char * File::Utf8Text(int page, size_t *size)
+    char * File::Utf8Text(int page, size_t *size)
     {
         const wchar_t * utext = ReadAsText(m_filename, page);
         if (NULL == utext)
@@ -131,7 +131,7 @@ namespace Matrix
         {
             *size = wcslen(utext);
         }
-        const char * u8text = Matrix::TextEncoder::UnicodeToUtf8(utext);
+        char * u8text = Matrix::TextEncoder::UnicodeToUtf8(utext);
         if (NULL != utext)
         {
             delete utext;
@@ -140,7 +140,7 @@ namespace Matrix
         return u8text;
     }
 
-    const char * File::Binary(int page, size_t *size)
+    char * File::Binary(int page, size_t *size)
     {
         if (NULL != size)
         {
@@ -262,14 +262,14 @@ namespace Matrix
         return size;
     }
 
-    const wchar_t * File::ReadAsText(const char *filename, int page)
+    wchar_t * File::ReadAsText(const char *filename, int page)
     {
         if (NULL == filename)
         {
             return NULL;
         }
         const char * ufilename = Matrix::TextEncoder(filename).Ansi();
-        const wchar_t * utext = ReadAsText(ufilename, page);
+        wchar_t * utext = ReadAsText(ufilename, page);
         if (NULL != ufilename)
         {
             delete ufilename;
@@ -278,14 +278,14 @@ namespace Matrix
         return utext;
     }
 
-    const wchar_t * File::ReadAsText(const wchar_t *filename, int page)
+    wchar_t * File::ReadAsText(const wchar_t *filename, int page)
     {
-        const char * text = ReadBlock(filename, FPAGESIZ * page, FPAGESIZ);
+        char * text = ReadBlock(filename, FPAGESIZ * page, FPAGESIZ);
         if (NULL == text)
         {
             return NULL;
         }
-        const wchar_t * utext = Matrix::TextEncoder(text).Unicode();
+        wchar_t * utext = Matrix::TextEncoder(text).Unicode();
         if (NULL != text)
         {
             delete text;
@@ -294,14 +294,14 @@ namespace Matrix
         return utext;
     }
 
-    const char * File::ReadAsBinary(const char * filename, int page)
+    char * File::ReadAsBinary(const char * filename, int page)
     {
         if (NULL == filename)
         {
             return NULL;
         }
         const wchar_t * ufilename = Matrix::TextEncoder(filename).Unicode();
-        const char * buffer = ReadBlock(ufilename, FPAGESIZ * page, FPAGESIZ);
+        char * buffer = ReadBlock(ufilename, FPAGESIZ * page, FPAGESIZ);
         if (NULL != ufilename)
         {
             delete ufilename;
@@ -310,12 +310,12 @@ namespace Matrix
         return buffer;
     }
 
-    const char * File::ReadAsBinary(const wchar_t * filename, int page)
+    char * File::ReadAsBinary(const wchar_t * filename, int page)
     {
         return ReadBlock(filename, FPAGESIZ * page, FPAGESIZ);
     }
 
-    const char * File::ReadBlock(const wchar_t * filename, off_t off, size_t read_size)
+    char * File::ReadBlock(const wchar_t * filename, off_t off, size_t read_size)
     {
         std::fstream file;
         if (NULL == filename)

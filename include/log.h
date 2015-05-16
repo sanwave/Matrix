@@ -16,6 +16,7 @@
 #define _LOG_H_
 
 #include <iostream>
+#include <mutex>
 
 #define LOG_ERROR  4
 #define LOG_WARN   3
@@ -33,6 +34,8 @@ namespace Matrix
 
         static std::string GetLevelStr(unsigned char level);
         static unsigned char m_level;
+
+        static std::mutex m_mtx;
     };
 
 }

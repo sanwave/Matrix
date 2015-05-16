@@ -15,21 +15,13 @@
 
 namespace Matrix
 {
-    MySqlHelper::MySqlHelper() : m_conn(NULL), m_encode("gbk")
-    {
-        MySqlHelper("", "", "", "");
-    }
+    MySqlHelper::MySqlHelper() : m_conn(NULL), m_encode("utf8")
+    {}
 
     MySqlHelper::MySqlHelper(std::string host, std::string user, std::string pwd, std::string db_name)
         : m_conn(NULL), m_host(host), m_user(user), m_pwd(pwd),
-        m_db_name(db_name), m_encode("gbk")
-    {
-        //initialize the mysql connection library
-        if (0 != mysql_library_init(0, NULL, NULL))
-        {
-            m_error_info = "mysql_library_init() failed";
-        }
-    }
+        m_db_name(db_name), m_encode("utf8")
+    {}
 
     MySqlHelper::MySqlHelper(const MySqlHelper & src)
         :m_conn(NULL)
@@ -69,6 +61,12 @@ namespace Matrix
 
     int MySqlHelper::InitMySQL()
     {
+        //initialize the mysql connection library
+        if (0 != mysql_library_init(0, NULL, NULL))
+        {
+            m_error_info = "mysql_library_init() failed";
+        }
+
         //initialize the mysql data types
         if (NULL == (m_conn = mysql_init(m_conn)))
         {

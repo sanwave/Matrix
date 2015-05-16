@@ -34,6 +34,8 @@ namespace Matrix
 {
     unsigned char Log::m_level = LOG_TRACE;
 
+    std::mutex Log::m_mtx;
+
     int Log::Write(unsigned char level, std::string info)
     {
         return Write(level, info.c_str());
@@ -41,8 +43,11 @@ namespace Matrix
 
     int Log::Write(unsigned char level, const char * info)
     {
+        m_mtx.lock();
+
         if (level < m_level)
         {
+            m_mtx.unlock();
             return DO_NOTHING;
         }
 
@@ -94,10 +99,13 @@ namespace Matrix
             file.close();
 
             std::cout << line.str();
+            m_mtx.unlock();
             return DO_SUCCEED;
-    }
+        }
+
+        m_mtx.unlock();
         return DO_ERROR;
-}
+    }
 
     std::string Log::GetLevelStr(unsigned char level)
     {
