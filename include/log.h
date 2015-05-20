@@ -16,6 +16,8 @@
 #define _LOG_H_
 
 #include <iostream>
+#include <list>
+#include <thread>
 #include <mutex>
 
 #define LOG_ERROR  4
@@ -29,13 +31,23 @@ namespace Matrix
     class Log
     {
     public:
-        static int Write(unsigned char level, std::string info);
-        static int Write(unsigned char level, const char * info);
-
+        static void Init();
+        static void Uninit();
+        static void SetLevel(unsigned char level);
         static std::string GetLevelStr(unsigned char level);
-        static unsigned char m_level;
+        static void Write(unsigned char level, std::string info);
+        static void Write(unsigned char level, const char * info);
+        
+    private:
+        static void WriteLog();
 
-        static std::mutex m_mtx;
+    private:
+        static std::mutex m_level_mtx;
+        static std::mutex m_log_lines_mtx;
+        static std::mutex m_write_log_mtx;
+        static unsigned char m_level;
+        static std::list<std::string> m_log_lines;
+        static std::thread * m_write_log_thread;
     };
 
 }
