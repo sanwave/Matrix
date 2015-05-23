@@ -26,6 +26,8 @@
 #define LOG_DEBUG  1
 #define LOG_TRACE  0
 
+#define SPACE_TAB  "    "
+
 namespace Matrix
 {
     class Log
@@ -43,10 +45,11 @@ namespace Matrix
 
     private:
         static std::mutex m_level_mtx;
-        static std::mutex m_log_lines_mtx;
+        static std::mutex m_task_queue_mtx;
         static std::mutex m_write_log_mtx;
         static unsigned char m_level;
-        static std::list<std::string> m_log_lines;
+        static unsigned int m_task_signal;
+        static std::list<char *> m_task_queue;
         static std::thread * m_write_log_thread;
     };
 

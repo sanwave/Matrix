@@ -22,6 +22,10 @@
 #define SIZE_ALL               -1
 #define SIZE_ON_HEAP           -2
 
+#define SIGNAL_TASK             1
+#define SIGNAL_EXIT             0
+#define SIGNAL_EXCEPTION        -1
+
 namespace Matrix
 {
     class OS

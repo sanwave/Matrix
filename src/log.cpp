@@ -33,10 +33,11 @@
 namespace Matrix
 {
     std::mutex Log::m_level_mtx;
-    std::mutex Log::m_log_lines_mtx;
+    std::mutex Log::m_task_queue_mtx;
     std::mutex Log::m_write_log_mtx;
     unsigned char Log::m_level = LOG_INFO;
-    std::list<std::string> Log::m_log_lines;
+    unsigned int Log::m_task_signal=SIGNAL_TASK;
+    std::list<char *> Log::m_task_queue;
     std::thread * Log::m_write_log_thread = NULL;
 
     void Log::Init()
@@ -46,7 +47,11 @@ namespace Matrix
 
     void Log::Uninit()
     {
+        m_task_queue_mtx.lock();
+        m_task_signal = SIGNAL_EXIT;
+        m_task_queue_mtx.unlock();
 
+        m_write_log_thread->join();
     }
     
     void Log::SetLevel(unsigned char level)
@@ -109,30 +114,57 @@ namespace Matrix
 
         time = DateTime::Now() + "." + millisecond;
         levelstr = GetLevelStr(level);
-        line << time << "    " << levelstr << "    " << info << std::endl;
+        line << time << SPACE_TAB << levelstr << SPACE_TAB << info << std::endl;
 
-        m_log_lines_mtx.lock();
-        m_log_lines.push_back(line.str());
-        m_log_lines_mtx.unlock();
+        line.seekg(0, line.end);
+        int length = line.tellg();
+        line.seekg(0, line.beg);
+        char * content = new char[length + 1];
+        memset(content + length, 0, 1);
+        line.read(content, length);
+
+        m_task_queue_mtx.lock();
+        m_task_queue.push_back(content);
+        m_task_queue_mtx.unlock();
     }
 
     void Log::WriteLog()
     {
-        while (1)
+        while (true)
         {
-            std::string line;
-            while (1)
+            std::stringstream lines;
+            char * text = NULL;
+            int length = 0;
+            while (true)
             {
-                m_log_lines_mtx.lock();
-                while (!m_log_lines.empty())
+                m_task_queue_mtx.lock();
+                switch (m_task_signal)
                 {
-                    line += m_log_lines.front();
-                    m_log_lines.pop_front();
-                }
-                m_log_lines_mtx.unlock();
+                case SIGNAL_EXIT:
+                    m_task_queue_mtx.unlock();
+                    return;
 
-                if (!line.empty())
+                default:
+                    break;
+                }
+                while (!m_task_queue.empty())
                 {
+                    lines << m_task_queue.front();
+                    delete m_task_queue.front();
+                    m_task_queue.pop_front();
+                }
+                m_task_queue_mtx.unlock();
+
+                lines.seekg(0, lines.end);
+                length = lines.tellg();
+                lines.seekg(0, lines.beg);
+
+                if (length > 0)
+                {
+                    text = new char[length + 1];
+                    memset(text + length, 0, 1);
+                    lines.read(text, length);
+                    lines.str("");
                     break;
                 }
                 OS::Sleep(1);
@@ -159,10 +191,10 @@ namespace Matrix
 
                 std::fstream file;
                 file.open(filename, std::ios_base::out | std::ios_base::app | std::ios_base::binary);
-                file.write(line.c_str(), line.length());
+                file.write(text, length);
                 file.close();
 
-                std::cout << line;
+                std::cout << text;
             }
             m_write_log_mtx.unlock();
         }
