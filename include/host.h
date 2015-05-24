@@ -24,7 +24,7 @@
 
 namespace Matrix
 {
-    struct Host
+    class Host
     {
     public:
         std::string Name;

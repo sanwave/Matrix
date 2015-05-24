@@ -117,7 +117,7 @@ namespace Matrix
         line << time << SPACE_TAB << levelstr << SPACE_TAB << info << std::endl;
 
         line.seekg(0, line.end);
-        int length = line.tellg();
+        int length = (int)line.tellg();
         line.seekg(0, line.beg);
         char * content = new char[length + 1];
         memset(content + length, 0, 1);
@@ -156,7 +156,7 @@ namespace Matrix
                 m_task_queue_mtx.unlock();
 
                 lines.seekg(0, lines.end);
-                length = lines.tellg();
+                length = (int)lines.tellg();
                 lines.seekg(0, lines.beg);
 
                 if (length > 0)
