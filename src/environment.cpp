@@ -25,7 +25,6 @@
 
 #include "text_encoder.h"
 #include "file.h"
-#include "log.h"
 
 
 namespace Matrix
@@ -55,7 +54,6 @@ namespace Matrix
         }
         else
         {
-            Log::Write(LOG_ERROR, "get current dir failed!");
             return NULL;
         }
     }

@@ -16,8 +16,6 @@
 #include <string>
 #include <fstream>
 
-//for gcc
-#include <cstring>
 #ifdef __linux__
 #include <climits>
 #endif

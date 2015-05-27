@@ -45,7 +45,7 @@ namespace Matrix
         // if the string value is domain name, return true; otherwise, return false
         int IsDomain(const char* value);
         // resolve the domain name to ip addr
-        unsigned long Host::Resolve(const char * domain);
+        unsigned long Resolve(const char * domain);
     };
 
     class Hosts
