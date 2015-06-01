@@ -20,6 +20,8 @@
 namespace Matrix
 {
     Socket::Socket()
+        :m_sockfd(INVALID_SOCKET),
+        unblocked(false)
     {}
 
     Socket::Socket(SOCKET sockfd)
@@ -69,6 +71,14 @@ namespace Matrix
 
     int Socket::SetBlock()
     {
+        if (!unblocked)
+        {
+            return 0;
+        }
+        else
+        {
+            unblocked = false;
+        }
         int ret;
 #ifdef WIN32
         u_long arg = 0;
@@ -90,6 +100,14 @@ namespace Matrix
 
     int Socket::SetNonBlock()
     {
+        if (unblocked)
+        {
+            return 0;
+        }
+        else
+        {
+            unblocked = true;
+        }
         int ret;
 #ifdef WIN32
         u_long arg = 1;
@@ -154,7 +172,7 @@ namespace Matrix
     SOCKET Socket::Accept(struct sockaddr * addr, socklen_t * len)
     {
         SOCKET connfd;
-        if (INVALID_SOCKET == (connfd = accept(m_sockfd, addr, len)))
+        if (INVALID_SOCKET == (connfd = accept(m_sockfd, addr, len)) && !unblocked)
         {
             Log::Write(LOG_ERROR, "Accept socket error");
             Close();

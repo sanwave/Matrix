@@ -84,6 +84,7 @@ namespace Matrix
     private:
         // socket fd
         SOCKET m_sockfd;
+        bool unblocked;
     };
 }
 
