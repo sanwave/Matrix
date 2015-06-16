@@ -128,4 +128,26 @@ namespace Matrix
         }
         return stream.str();
     }
+
+    std::string & StrHandle::ReplaceAll(std::string & str, const std::string & old_value, const std::string & new_value)
+    {
+        if (old_value == new_value)
+        {
+            return str;
+        }
+        
+        std::string::size_type pos(0);
+        while (true)
+        {
+            if (std::string::npos != (pos = str.find(old_value, pos + new_value.length())))
+            {
+                str.replace(pos, old_value.length(), new_value);
+            }
+            else
+            {
+                break;
+            }
+        }
+        return str;
+    }
 }

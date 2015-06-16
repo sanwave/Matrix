@@ -44,6 +44,8 @@ namespace Matrix
         static std::string ToUpper(const char * source) { return ""; }
         // create string with the format
         static std::string Format(const char * format, const char * args, ...);
+        // replace all old_value with new_value in str
+        static std::string & ReplaceAll(std::string & str, const std::string & old_value, const std::string & new_value);
     };
 }
 
