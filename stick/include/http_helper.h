@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include "os_types.h"
+#include "http_protocol.h"
 
 namespace Matrix
 {
