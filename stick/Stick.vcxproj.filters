@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\udp_server.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\http_client.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\http_server.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\http_protocol.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\http_request.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\http_helper.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tcp_listener.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\get_handler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\http_msg.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\post_handler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resp_handler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msg_handler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\config.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\hls_client.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\udp_server.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\http_client.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\http_request.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\http_server.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\http_helper.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tcp_listener.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\msg_handler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\get_handler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\post_handler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resp_handler.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hls_client.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

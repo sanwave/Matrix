@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stick", "Stick.vcxproj", "{622C8D47-C1BB-49AB-BCD0-DEA337C8A7B7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DEAEC633-0B74-4203-A827-0115AF882B9B} = {DEAEC633-0B74-4203-A827-0115AF882B9B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "..\Matrix\Matrix.vcxproj", "{DEAEC633-0B74-4203-A827-0115AF882B9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{622C8D47-C1BB-49AB-BCD0-DEA337C8A7B7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{622C8D47-C1BB-49AB-BCD0-DEA337C8A7B7}.Debug|Win32.Build.0 = Debug|Win32
+		{622C8D47-C1BB-49AB-BCD0-DEA337C8A7B7}.Release|Win32.ActiveCfg = Release|Win32
+		{622C8D47-C1BB-49AB-BCD0-DEA337C8A7B7}.Release|Win32.Build.0 = Release|Win32
+		{DEAEC633-0B74-4203-A827-0115AF882B9B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DEAEC633-0B74-4203-A827-0115AF882B9B}.Debug|Win32.Build.0 = Debug|Win32
+		{DEAEC633-0B74-4203-A827-0115AF882B9B}.Release|Win32.ActiveCfg = Release|Win32
+		{DEAEC633-0B74-4203-A827-0115AF882B9B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
