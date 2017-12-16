@@ -1,0 +1,8 @@
+language: 
+  - cpp
+compiler: 
+  - g++
+before_install:
+  - sudo apt-get install libboost-dev
+script:
+  - cd kick; sh build.sh
